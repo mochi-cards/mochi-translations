@@ -1,0 +1,1275 @@
+{:en
+ {:home "Home"
+  :side-bar/decks         "Decks"
+  :side-bar/tags          "Tags"
+  :side-bar/templates     "Templates"
+  :side-bar/pins          "Pinned"
+  :side-bar/empty-deck    "No decks inside"
+  :side-bar/dashboard     "Dashboard"
+  :side-bar/undo          "Undo"
+  :side-bar/redo          "Redo"
+  :side-bar/due-today     "Due today"
+  :side-bar/new-cards     "New cards"
+  :side-bar/settings      "Settings"
+  :side-bar/jump-to       "Search"
+  :side-bar/add-deck      "New Deck"
+
+  :embedded-card/remember "Remembered"
+  :embedded-card/forgot   "Forgot"
+
+  :review/remember "Remembered"
+  :review/forgot   "Forgot"
+  :review/again    "Again"
+
+  :chart/total-cards-learned      "Cards learned (cumulative)"
+  :chart/number-of-cards-learned  "Cards learned"
+  :chart/number-of-cards-reviewed "Reviews"
+  :chart/retention-rate           "Retention rate"
+
+
+  :card.tags.retired/label "Retired"
+  :card.tags.retired/tooltip (fn [max-interval] (str "This card has reached the max interval of " max-interval " days // It won't show up for review anymore"))
+  :card.tags.due-date/tooltip (fn [due today due-str]
+                                (if (>= due today)
+                                  (str "This card will be due again on " due-str)
+                                  (str "This card was due for review on " due-str)))
+
+
+  :side-bar.account/logged-out "Logged out"
+  :side-bar.account/log-in   "Log in"
+  :side-bar.account/log-out  "Log out"
+  :side-bar.account/sign-up  "Sign up"
+  :side-bar.account/offline "Offline"
+
+  :sign-up/heading           "Sign up"
+  :sign-up/submit            "Sign up"
+  :sign-up/submit-loading    "Signing up..."
+  :sign-up/cancel            "Sign up later"
+
+  :sign-up/name:placeholder "Name"
+  :sign-up/email:placeholder "Email"
+  :sign-up/password:placeholder "Password"
+  :sign-up/confirm-password:placeholder "Confirm password"
+
+  :sign-up.verify/heading "Verify"
+
+  :sign-up.checkout/heading "Checkout"
+  :interval-settings "Review Settings"
+  :template-settings "Template"
+  :template-settings/title "Templates"
+  :template-settings/subtitle "When you create a new card, it will use the selected template. The template can also be set on cards individually. If no template is set, you can write free-form markdown in the card."
+  :template-settings/new-template "New template"
+  :template-settings/no-template "No template"
+  :template-settings/template-fields "Template fields"
+  :template-settings/template-fields:hint "Fields let you add structured data to your cards. You can use these fields in the template."
+
+  :template-settings/attachments "Attachments"
+  :template-settings/attachments:hint "You can attach files like images and audio to your templates for use in every card."
+
+  :template/confirm-delete "Really delete this template?"
+  :template/yes-delete "Delete template"
+  :template/editor-placeholder "Write markdown or type '/' to add fields"
+
+  :field/name-placeholder "Field name"
+  :field/confirm-delete "Really delete this field?"
+  :field/delete-subtext "This field will also be removed from any cards that are using it."
+  :field/yes-delete "Delete field"
+  :field/primary-description "This is the card's primary field and cannot be removed.\nIt is used to represent the card in other parts of the UI."
+
+  :fields.dictionary/hide-term "Hide term"
+
+  :attachment/confirm-delete "Really remove this attachment?"
+  :attachment/delete-subtext "The attachment will be deleted and cannot be undone."
+  :attachment/yes-delete "Remove attachment"
+
+  :confirm-reset-templates/title "Set this template on all cards?"
+  :confirm-reset-templates/description "This will update all cards in the deck to use the selected template. Cards that previously used a different template will keep their field data, but you won't be able to see or edit them."
+  :confirm-reset-templates/confirm "Change templates"
+
+  :preferences "Preferences"
+
+  :deck-preferences "Deck settings"
+
+  :reset-review-history "Reset Review History"
+  :confirm-reset-review-history/title "Reset review history?"
+  :confirm-reset-review-history/description "This will remove the review history from all cards in this deck."
+  :confirm-reset-review-history/description-card "This will remove all reviews and reverse reviews from this card."
+  :confirm-reset-review-history/description-note "This will remove the review history from all cards in this note."
+  :confirm-reset-review-history/confirm "Remove all reviews"
+
+  :toast/reviews-reset "Review history cleared"
+
+  ;; Card views
+  :note-view "Notebook View"
+  :list-view "List View"
+  :table-view "Table View"
+  :column-view "Column View"
+  :grid-view "Grid View"
+  :unknown-view "Unknown View"
+
+  :x-cards-due-today-from-deck
+  (fn [card-count]
+    (if (> card-count 1)
+      (str card-count " cards from this deck are due today")
+      (str card-count " card from this deck is due today")))
+  :x-cards-due-today-from-note
+  (fn [card-count]
+    (if (> card-count 1)
+      (str card-count " cards from this note are due today")
+      (str card-count " card from this note is due today")))
+  :x-cards-due
+  (fn [card-count]
+    (if (> card-count 1)
+      (str "You have " card-count " cards due for review today")
+      (str "You have " card-count " card due for review today")))
+  :x-new-cards
+  (fn [card-count]
+    (if (> card-count 1)
+      (str "You have " card-count " new cards to learn")
+      (str "You have " card-count " new card to learn")))
+  :x-cards-reviewed
+  (fn [review-count rereview-count]
+    (str "You've reviewed " review-count " " (pluralize review-count "card") " today // " rereview-count " " (pluralize rereview-count "card") " " (if (> rereview-count 1) "need" "needs") " re-review"))
+
+  :x-cards-learned
+  (fn [card-count]
+    (str "You've learned " card-count " " (pluralize card-count "card") " today"))
+
+  :review-reverse-enabled-for-deck "Reverse reviews are enabled for this deck."
+
+  ;; Card View
+  :add-card "New Card"
+  :history-tooltip "The review history of this card"
+  :history "Review History"
+  :reverse-history "Reverse History"
+
+  :public "Public"
+  :published "Published"
+  :archived "Archived"
+  :archive-card "Archive Card"
+  :archive-deck "Archive Deck"
+  :archive-note "Archive Note"
+  :deck-archive-tooltip "Cards in this deck will not show up for review."
+
+  :archive-deck-tooltip "When a deck is archived, none of its cards will show up for review."
+  :archive-note-tooltip "When a note is archived, none of its cards will show up for review."
+
+  ;; Card modal view
+  :move-card-to "Move card to..."
+
+
+  ;; Review buttons
+  :pages.deck.review-button/label       "Review"
+  :pages.deck.review-button/label:empty "Review"
+  :pages.deck.review-button/tooltip     
+  (fn [card-count]
+    (str "Review " card-count " " (pluralize card-count "card") " due today"))
+  :pages.deck.review-button/tooltip:empty "No cards due today // Learning new cards will schedule them for review later."
+
+  :pages.deck.learn-button/label       "New cards"
+  :pages.deck.learn-button/label:empty "New cards"
+  :pages.deck.learn-button/tooltip     "Learn new cards and add them to the review schedule"
+
+  :pages.deck.quick-review-button/label   "Cram"
+  :pages.deck.quick-review-button/tooltip "Quick review filtered / searched cards // Does not affect review scheduling"
+  :pages.deck.save-deck/label "Save Deck"
+  :pages.deck.save-deck/label:loading "Cloning deck"
+  :pages.deck.save-deck/tooltip "Save this deck to your collection"
+  :pages.deck.publish/label "Share"
+
+  :pages.deck.publish/tooltip "When published, anyone with the link can view this deck"
+  :pages.deck.publish/tooltip:you-must-be-logged-in "You must be logged in to publish"
+  :pages.deck.publish/tooltip:upgrade "Upgrade to Mochi Pro to publish"
+  :pages.deck.publish/copy "Copy Link"
+  :pages.deck.publish/copied "Copied!"
+
+  :save-deck/loading                 "Cloning deck"
+  :save-deck/downloading-cards       "Downloading cards..."
+  :save-deck/saving-cards            "Saving cards..."
+  :save-deck/downloading-attachments "Downloading attachments..."
+  :save-deck/saving-attachments      "Saving attachments..."
+  :save-deck/updating-refs           "Updating references..."
+
+  :save-deck-prompt/title   (fn [deck-name] (str "Save \"" deck-name "\" to your collection?"))
+  :save-deck-prompt/subtext "Would you like to save this deck so your progress is saved?"
+  :save-deck-prompt/yes     "Save deck"
+  :save-deck-prompt/no      "Not now"
+
+  :deck/filter "Filter"
+
+  ;; Review History
+  :learned "Learned"
+
+  ;; Add XYZ menu options
+  :new-blank-deck "New Empty Deck"
+  :new-blank-note "New Empty Note"
+  :new-deck-from-template "New Deck from Template"
+  :import-deck "Import Deck"
+  :import "Import"
+  :browse-online "Browse from online database"
+
+  ;; Default names when creating new records
+  :default-note-name "Untitled note"
+  :default-deck-name "New Deck"
+
+  ;; Alert when closing modal while still editing.
+  :alert.unsaved-changes/title "Discard changes?"
+  :alert.unsaved-changes/subtext "You have unsaved changes. Are you sure you want to discard them?"
+  :alert.unsaved-changes/subtext:new-card "You have unsaved changes. Do you want to discard them before creating a new card?"
+  :alert.unsaved-changes/confirm "Close and discard"
+  :alert.unsaved-changes/confirm:new-card "Discard changes"
+  :alert.unsaved-changes/cancel "Keep editing"
+
+  :alert.cannot-delete-template/title "Cannot delete template"
+  :alert.cannot-delete-template/cards-using "There are cards using this template."
+  :alert.cannot-delete-template/delete-cards-first "Either delete these cards first, or switch them to a different template."
+
+  :do-you-want-to-save-first? "Discard changes?"
+  :do-you-want-to-save-first/subtext "You have unsaved changes. Are you sure you want to discard them?"
+  :save "Save"
+  :save-and-close "Save & Close"
+  :save-and-new "Save & Add"
+  :account.general-info/save "Update account"
+  :account.general-info/saving "Updating account"
+  :done "Done"
+  :saving "Saving"
+  :cancel "Cancel"
+  :delete "Delete"
+  :rename "Rename"
+  :move-to "Move to"
+  :add-nested-deck "Add subdeck"
+  :delete-card "Delete Card"
+  :delete-note "Delete Note"
+  :delete-deck "Delete Deck"
+  :export-note "Export Note"
+
+  :multi-card-actions/button-label "Actions"
+  :multi-card-actions/move "Move to"
+  :multi-card-actions/archive "Archive"
+  :multi-card-actions/unarchive "Unarchive"
+  :multi-card-actions/pin "Pin"
+  :multi-card-actions/unpin "Unpin"
+  :multi-card-actions/delete "Delete"
+  :multi-card-actions/learn "Add to Reviews"
+  :multi-card-actions/reset-reviews "Reset Reviews History"
+  :multi-card-actions/review-reverse:on "Enable Reverse Review"
+  :multi-card-actions/review-reverse:off "Disable Reverse Review"
+  :multi-card-actions/add-or-remove-tags "Change Tags"
+
+
+  :modal.add-or-remove-tags/search-placeholder "Search for tags to add or remove"
+  :modal.add-or-remove-tags/new-tag "New tag"
+
+
+  :cards/delete:alert:title
+  (fn [card-count]
+    (str "Delete " (intcomma card-count) " selected " (pluralize card-count "card") "?"))
+
+  :cards/delete:alert:desc
+  (fn [card-count]
+    (str "Are you sure you want to delete " (intcomma card-count) " " (pluralize card-count "card") "? You can restore them from the trash later."))
+
+  :cards/delete:alert:confirm
+  (fn [card-count]
+    (str "Yes, delete " (intcomma card-count) " " (pluralize card-count "card")))
+
+  :cards/archive:alert:title
+  (fn [card-count]
+    (str "Archive " (intcomma card-count) " selected " (pluralize card-count "card") "?"))
+
+  :cards/archive:alert:desc
+  (fn [card-count]
+    (str "Are you sure you want to archive " (intcomma card-count) " " (pluralize card-count "card") "?"))
+  :cards/archive:alert:confirm
+  (fn [card-count]
+    (str "Yes, archive " (intcomma card-count) " " (pluralize card-count "card")))
+
+  :cards/reset-reviews:alert:title
+  (fn [card-count]
+    (str "Reset review histories of " (intcomma card-count) " selected " (pluralize card-count "card") "?"))
+  :cards/reset-reviews:alert:desc
+  (fn [card-count]
+    (str "Are you sure you want to reset the review histories of " (intcomma card-count) " " (pluralize card-count "card") "? You will lose any progress and reset the cards to the \"new\" state."))
+  :cards/reset-reviews:alert:confirm
+  (fn [card-count]
+    (str "Yes, reset review histories for" (intcomma card-count) " " (pluralize card-count "card")))
+
+  :note.legacy/make-cards-from-note "Make cards from this note"
+  :export-deck "Export Deck"
+  :export "Export"
+  :export/deck-name (fn [deck-name] (str "Export " deck-name))
+  :export/submit "Export"
+  :export/submitting "Exporting..."
+  :export/format "Export format"
+  :export/mochi-format "Mochi format"
+  :export/markdown-format "Markdown"
+  :export/csv-format "CSV"
+  :export/sqlite-format "SQLite"
+  :export/keep-reviews "Include review history"
+  :export/ids-in-file-names "Include IDs in file names"
+  :export/include-subdecks "Include subdecks"
+  :export/csv-render-cards "Prerender cards"
+  :export/everything "Export everything"
+  :export/error-title "Unable to export"
+  :export/error-msg [:<> "There was a problem while trying to export." [:br] "Please contact " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+
+  :export-progress.mochi/title "Exporting..."
+  :export-progress.mochi/subtitle:collecting-data "Collecting data"
+  :export-progress.mochi/subtitle:adding-cards "Adding cards + attachments"
+  :export-progress.mochi/subtitle:generating-archive "Archiving data"
+
+  :publish "Publish"
+  :edit "Edit"
+  :edit-note "Edit Note"
+  :duplicate-note "Duplicate Note"
+  :duplicate "Duplicate"
+  :edit-card "Edit Card"
+
+  :cant-find-note "Can't find this note!"
+  :cant-find-deck "Can't find deck."
+
+  :cards-to-learn "Learned today"
+
+  :make-cards-from-note "Make cards from this note"
+  :make-cards-tooltip "Automatically create cards from the contents of this note"
+  :copy-link "Copy ID"
+  :copy-deck-id "Copy Deck ID"
+
+  :confirm-delete-deck/title "Delete this deck?"
+  :confirm-delete-deck/description "This action cannot be undone."
+  :yes-delete-deck "Delete deck"
+
+  :confirm-delete-note/title "Delete this note?"
+  :confirm-delete-note/description "This action cannot be undone."
+  :yes-delete-note "Delete note"
+
+  :confirm-delete-card/title "Delete this card?"
+  :confirm-delete-card/description "This action cannot be undone."
+  :yes-delete-card "Delete card"
+
+  :prev "Previous"
+  :next "Next"
+  :forget "Forget"
+  :remember "Remember"
+
+  :finished-reviews "You've finished all of your reviews!"
+  :finished-learning "No more cards to learn!"
+
+  :new "New"
+  :beta "Beta"
+  :back "Back"
+  :card-content-placeholder "What do you want to remember?"
+  :note-content-placeholder "What's on your mind?"
+  :deck-page/search-placeholder "Search Cards"
+  :next-side "Next Side"
+  :reveal-next-side "Show next side"
+  :view-note-as-page "View as page"
+  :preview "Preview"
+  :notes "Notes"
+  :decks "Decks"
+
+  :add-to-reviews "Add to reviews"
+
+  ;; Modal message
+  :imported-deck-already-exists "A deck with this ID already exists."
+  :imported-note-already-exists "A note with this ID already exists."
+  :imported-card-already-exists "A card with this ID already exists."
+
+  :import/import-failed "Unable to import collection"
+  :import/data-edn-not-found "Could not find data.edn or data.json file."
+  :import/invalid-data-edn "The data.edn file does not conform to the schema."
+  :import/media-file-too-big "This collection contains one or more attachments that are larger than 5MB."
+
+  :import-csv/import-failed "Unable to import CSV file"
+  :import-csv/failure-subtext "There was a problem when trying to parse the CSV file."
+
+  :diagram/unable-to-load-file "Unable to to load file"
+  :diagram/file-too-large "File attachments larger than 5MB are not supported."
+  :diagram/replace-image? "Replace image?"
+  :diagram/replace-image-details "Do you want to replace the current image with the one you've just pasted?"
+
+  :import/anki-collection-file-not-found "Could not find collection.anki2 or collection.anki21 file."
+  :import/unsupported-apkg-file:title "This format is not supported."
+  :import/unsupported-apkg-file:desc "As of Oct 31, 2023 the format of Anki exports has changed. Please export your collection using the older format in order to import them into Mochi."
+  :import/generic-error-title "An unexpected error occurred."
+  :import/generic-error-desc "The imported encountered an unexpected error when trying to impor this file. It could mean that there is a an issue with the file, or there is a bug in the importer."
+  :import/uncaught-exception "An unexpected error occurred while trying to import the file."
+  :unable-to-read-md-file "Unable to read .md file."
+
+  ;; Import progress modal
+  :importing "Importing..."
+  :emptying-trash "Emptying trash..."
+  :importing/extracting-archive "Extracting archive"
+  :importing/reading-data "Reading data"
+  :importing/saving-data "Saving data"
+  :import/select-or-create-deck "Select or create deck"
+  :import/new-deck "New deck"
+
+  :import-modal/mochi-options "Mochi Import Options"
+  :import-modal/anki-options "Anki Import Options"
+  :import-modal/csv-options "CSV Import Options"
+  :import-modal/markdown-options "Markdown Import Options"
+  :import-modal/select-format "Select a format from the left."
+
+  :exporting "Exporting..."
+
+  :auto-update/check-for-updates "Check for updates"
+  :auto-update
+  {:auto-update.status/update-available "A new version is available!"
+   :auto-update.status/beta-available   [:<> "A new " [:strong "beta"] " version is available!"]
+   :auto-update.status/backing-up       "Backing up..."
+   :auto-update.status/downloading      "Downloading..."
+   :auto-update.status/downloaded       "Restart to update"
+   :auto-update.status/failed           "Update failed"}
+       
+  ;; Account modal
+  :account.settings/delete-account "Delete my account"
+  :account.settings/deleting-account "Deleting account"
+  :account.settings/are-you-sure-delete-account "Are you really sure?"
+
+  :account.settings/delete-account-email "Your email address"
+  :account.settings/delete-account-confirm-password "Confirm your password"
+  :account.settings/delete-account-type-out-confirm "Type \"delete my account\" to confirm."
+  :account.settings/delete-account-please-read "Please read carefully."
+  :account.settings/confirm-delete-account
+  [:<>
+   [:p
+    "This action " [:strong "cannot"] " be undone. Your account will be deleted " [:strong "immediately"] ". All associated data will be removed from Mochi's servers, including cloud data backups."]
+   [:p "If you have billing information stored on Stripe, that will also be removed."]
+   [:p "Your local data will not be affected."]]
+
+  :confirm-password-then-sync "You seem to have been logged out. Please confirm your password to log back in."
+  :upgrade-confirm-password "Are you sure you want to upgrade? Confirm your password to continue."
+  :confirm-and-sync "Sync content"
+  :upgrade          "Upgrade"
+  :pro "Pro"
+       
+  :account-modal/are-you-sure-downgrade? "Are you sure you want to downgrade?"
+  :account-modal/downgrade-subtext "Your plan will switch at the end of the billing period. You can still access your data offline with the free plan."
+  :account-modal/confirm-downgrade "Yes, switch to the free plan"
+
+  :account-modal/are-you-sure-upgrade? "Are you sure you want to upgrade?"
+  :account-modal/confirm-password "Confirm your password to continue."
+  :account-modal/confirm-upgrade "Upgrade"
+  :account-modal/confirm-upgrade:loading "Upgrading..."
+       
+  ;; Checkout modal
+       
+  ;; Attachments
+  :attachments/too-large:title "Attachment too large"
+  :attachments/too-large:subtext "Attachments larger than 5MB are currently not supported."
+  :file-too-big "Attachments larger than 5MB are not supported."
+       
+  :ok "Ok"
+
+  ;; Deck page
+  :review-all-cards      "Quick Review"
+  :review-searched-cards "Review results"
+  :review-filtered-cards "Review cards"
+  :no-filters-applied "No filters applied yet."
+  :add-filter "Add filter"
+
+  :make-public "Published"
+  :copy-public-link "Copy Link to Note"
+  :published-tooltip "This deck and its cards are public. Anyone with the link can view it"
+  :duplicate-deck? "Do you want to save this deck?"
+  :public-deck-warning-duplicate? "You're viewing a published deck. You need to clone it first before you can make changes."
+
+  ;; CouchDB connection
+  :couchdb-auth-failed "Unable to connect to remote database. Please contact support@mochi.cards"
+       
+  :markdown/heading-1       "H1"
+  :markdown/heading-2       "H2"
+  :markdown/heading-3       "H3"
+  :markdown/thematic-break  "New Side"
+  :markdown/bold            "Bold"
+  :markdown/italic          "Italic"
+  :markdown/strikethrough   "Strikethrough"
+  :markdown/highlight       "Highlight"
+  :markdown/link            "Link"
+  :markdown/reference       "Reference"
+  :markdown/media           "Media"
+  :markdown/list            "List"
+  :markdown/ordered-list    "Ordered List"
+  :markdown/quote           "Quote"
+  :markdown/definition-list "Definition List"
+  :markdown/cloze           "Hidden text"
+  :markdown/cloze-group     "Hidden text group"
+  :markdown/code            "Code"
+  :markdown/code-block      "Code Fence"
+  :markdown/latex           "Inline Latex"
+  :markdown/latex-block     "Display Latex"
+  :markdown/superscript     "Superscript"
+  :markdown/subscript       "Subscript"
+  :markdown/ruby            "Ruby characters"
+  :markdown/tag             "Tag"
+
+  :shortcuts/add-card "Add a card"
+  :shortcuts/review-cards "Review cards that are due"
+  :shortcuts/learn-cards "Learn new cards"
+  :shortcuts/notebook-move "Move selection"
+  :shortcuts/notebook-esc "Cancel selection"
+  :shortcuts/notebook-preview "Preview card"
+
+  :shortcuts/delete-note "Delete note"
+  :shortcuts/edit-note "Edit note"
+
+  :shortcuts/next-side "Show next side of card"
+  :shortcuts/prev-side "Hide last side"
+  :shortcuts/mark-remembered "Mark as \"remembered\""
+  :shortcuts/skip-and-mark-remembered "Skip sides and mark as \"remembered\""
+  :shortcuts/mark-forgot "Mark as \"forgot\""
+  :shortcuts/archive-card "Archive card"
+  :shortcuts/toggle-reverse-review "Toggle Reverse Reviews"
+  :shortcuts/delete-card "Delete card"
+  :shortcuts/edit-card "Edit card"
+  :shortcuts/replay-audio "Replay audio"
+  :shortcuts/pause-audio "Pause/play audio"
+  :shortcuts/split-card "Split card at cursor"
+  :shortcuts/save-and-add "Save and add a new card"
+  :shortcuts/save-and-exit "Save and finish editing."
+  :shortcuts/add-side "Add a new side"
+  :shortcuts/add-card-above "Add card above"
+  :shortcuts/add-card-below "Add card below"
+
+  :shortcuts/exit-modal "Exit modal"
+  :shortcuts/save-editor "Save editor"
+  :shortcuts/show-shortcuts-help "Show this panel"
+
+  :shortcuts/move-card-up "Move card up"
+  :shortcuts/move-card-down "Move card down"
+
+  :shortcuts/editor:save "Save and exit"
+  :shortcuts/editor:exit "Exit without saving"
+  :shortcuts/editor:open-reference "Open reference"
+  :shortcuts/editor:new-card-from-selection "New card (from selection)"
+
+
+  :downgrade "Downgrade"
+  :downgrading "Downgrading..."
+
+  :update-credit-card "Update credit card"
+  :updating-credit-card "Updating credit card"
+
+  :update-password "Update password"
+  :updating-password "Updating password"
+
+  :password              "Password"
+  :password-confirmation "Password confirmation"
+
+  :account-settings "Account settings"
+       
+  :all-synced "All synced"
+  :syncing "Syncing..."
+  :reconnecting "Retrying..."
+  :sync-failed "Sync failed"
+       
+  :import-desktop-only "Importing is currently only supported in the desktop and mobile apps."
+
+  :review/review-cards "Review cards"
+  :review/learn-cards "Learn new cards"
+  :review/rereview-cards "Review missed cards"
+  :review/skip-rereviews "Skip and finish"
+
+  :review/last-side-hint
+  (fn [r f] [:<> "Press " r " to mark as remembered, or " f " as forgot."])
+
+  :learn/last-side-hint
+  (fn [r f] [:<> "Press " r " to add to reviews, or " f " review again."])
+
+  :pouchdb/unable-to-save "Unable to save document"
+  :pouchdb/unknown-error [:<> "There was a problem while trying to save this document." [:br] "Please contact " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+  :couchdb/unable-to-sync "Failed to sync"
+  :couchdb/unauthorized [:<> "Unable to authenticate with the server," [:br] "please log in to re-authenticate."]
+  :couchdb/unknown-error [:<> "There was a problem while trying to sync." [:br] "Please contact " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+
+  :sync/attachment-sync-failed "Failed to sync attachments"
+  :sync/attachment-sync-failed:text "An unexpected error prevented the attachments from syncing."
+
+
+  :loading/logging-in       "Checking for account..."
+  :loading/migrating        "Migrating data..."
+  ;:loading/syncing          (fn [total] (str "Syncing data..." total))
+  :loading/syncing          "Syncing..."
+  :loading/reading-local-db "Loading cards..."
+  :loading/loading-data     "Indexing..."
+
+  :trash "Trash"
+  :trash/is-empty "The trash is empty."
+  :trash/empty "Empty trash"
+  :trash/empty-trash-tooltip "Permanently delete all items in the trash. // This action cannot be undone."
+  :trash/confirm-empty-title "Delete all trashed items?"
+  :trash/confirm-empty "Are you sure you want to delete all items in the trash? This action cannot be undone."
+  :trash/yes-empty-trash "Empty trash"
+
+  :trashed "Trash"
+  :restore "Restore"
+
+  :trash/delete-permanently "Delete permanently"
+
+  :db/compact "Compact"
+  :db/compact-tooltip "Compacting the database is a one-time operation // It will remove unused data and free up disk space"
+  :db/confirm-compact-title "Compact the database now?"
+  :db/confirm-compact-subtext "This my take a few minutes depending on how much data there is."
+  :db/yes-compact "Yes, compact"
+  :db/compacting "Compacting..."
+
+  :deck-stats/average-retention-rate
+  (fn [rate] (str "Average retention rate: " rate))
+  :deck-stats/num-of-cards-learned
+  (fn [learned-count total] (str learned-count " out of " total " " (pluralize total "card") " learned"))
+  :deck-stats/total-num-of-cards
+  (fn [card-count]
+    (str "There are " card-count " " (pluralize card-count "card") " in this deck"))
+       
+  ;; TODO: add sign up / sign in / subscribe button
+  ;; TODO: Change copy depending on state.
+  :banners/web-free-account-warning
+  [:div
+   [:strong "Data not backed up"]
+   [:br]
+   [:span {:style {:margin-right "6px"}}
+    "Upgrade to sync your content or download the app."]]
+  :banners/web-no-account-warning
+  [:div
+   [:strong "Data not backed up"]
+   [:br]
+   [:span {:style {:margin-right "6px"}}
+    "Sign in or register to sync your content."]]
+
+  :banner/published-deck [:<> "This is a published deck. You can look around and make" [:br] "changes, but you'll have to clone it to save changes."]
+
+  :toast/created-card "Created card"
+  :toast/archived-card "Archived card"
+  :toast/unarchived-card "Un-archived card"
+  :toast/duplicate-card "Duplicated card"
+  :toast/pinned-card "Pinned card"
+  :toast/unpinned-card "Un-pinned card"
+  :toast/enabled-review-reverse "Reverse reviews enabled"
+  :toast/disabled-review-reverse "Reverse reviews disabled"
+  :toast/copied-link-to-card "Copied link to card"
+  :toast/learned-card "Added card to reviews"
+  :toast/saved-card "Saved card"
+  :toast/moved-card-to-trash "Moved to trash"
+  :toast/delete-template "Deleted template"
+  :toast/move-cards
+  (fn [card-count]
+    (str "Moved " card-count " " (pluralize card-count "card")))
+  :toast/moved-card
+  (fn [card-count]
+    (str "Moved card to " card-count))
+  :toast/archive-cards
+  (fn [card-count]
+    (str "Archived " card-count " " (pluralize card-count "card")))
+  :toast/unarchive-cards
+  (fn [card-count]
+    (str "Unarchived " card-count " " (pluralize card-count "card")))
+  :toast/pin-cards
+  (fn [card-count]
+    (str "Pin " card-count " " (pluralize card-count "card")))
+  :toast/unpin-cards
+  (fn [card-count]
+    (str "Unpin " card-count " " (pluralize card-count "card")))
+  :toast/remove-cards-tag
+  (fn [card-count]
+    (str "Removed tag from " card-count " " (pluralize card-count "card")))
+  :toast/add-cards-tag
+  (fn [card-count]
+    (str "Added tag to " card-count " " (pluralize card-count "card")))
+  :toast/review-reverse-cards:on
+  (fn [card-count]
+    (str "Turned on reverse reviews for " card-count " " (pluralize card-count "card")))
+  :toast/review-reverse-cards:off
+  (fn [card-count]
+    (str "Turned off reverse reviews for " card-count " " (pluralize card-count "card")))
+  :toast/learn-cards
+  (fn [card-count]
+    (str "Added " card-count " " (pluralize card-count "card") " to the reviews"))
+  :toast/trash-cards
+  (fn [card-count]
+    (str "Moved " card-count " " (pluralize card-count "card") " to the trash"))
+  :toast/reset-cards-reviews
+  (fn [card-count]
+    (str "Reset " card-count " " (pluralize card-count "card") " review history"))
+  :toast/merge-cards
+  (fn [card-count]
+    (str "Merged " card-count " " (pluralize card-count "card")))
+
+  :close "Close"
+  :undo "Undo"
+  :redo "Redo"
+       
+  :card-actions/review-reverse "Review reverse"
+       
+  :kbd/ctrl  "Ctrl"
+  :kbd/enter "⏎"
+  :kbd/esc   "Esc"
+  :kbd/shift "Shift"
+  :kbd/space "Space"
+  :kbd/up    "↑"
+  :kbd/down  "↓"
+
+  :deck-view-switcher/show-card-title "Show card title"
+  :preferences/notebook-show-context "Show Notebook card context"
+  :deck-views/add-view "Add view"
+
+  :preferences/title "Preferences"
+  :preferences/deck-title "Deck Preferences"
+
+  :preferences/font-style "Font style"
+  :preferences/font-size "Font size"
+  :preferences/dark-mode "Dark mode"
+
+  :preferences/reduce-animations:title "Reduce animations"
+  :preferences/reduce-animations:desc "Turning this on will disabled the animations that play during a review when marking a card as remembered or forgot."
+
+  :preferences/rtl:title "Force right-to-left"
+  :preferences/rtl:desc "Useful for languages like Hebrew or Arabic."
+
+  :preferences/show-cloze:title "Show hidden text"
+  :preferences/show-cloze:desc "Display hidden text when previewing cards on the deck page."
+
+  :preferences/show-all-sides:title "Show all sides"
+  :preferences/show-all-sides:desc "Show all sides of a card on the deck page, not just the first."
+
+  :preferences/show-nested-cards:title "Show cards from subdecks"
+  :preferences/show-nested-cards:desc "Displays all cards from any child decks, including decks nested several layers deep."
+
+  :preferences/show-subdecks:title "Show subdecks"
+  :preferences/show-subdecks:desc "Displays a list of subdecks at the top of the deck page."
+
+  :preferences/spellcheck:title "Spell check"
+  :preferences/spellcheck:desc "Enable spell check when editing a card."
+
+  :preferences/char-limit:title "Card character limit"
+  :preferences/char-limit:desc "This option tracks and displays total characters used when creating a card. This can help when creating focused, atomic cards."
+
+  :preferences/code-block-soft-wrap:title "Code block soft wrap"
+  :preferences/code-block-soft-wrap:desc "Wrap lines within markdown codeblocks."
+
+  :preferences/type-hidden-text:title "Type hidden text"
+  :preferences/type-hidden-text:desc "Hidden text (cloze deletions) become typable input boxes."
+
+  :preferences/confirm-card-delete:title "Confirm when moving card to trash"
+  :preferences/confirm-card-delete:desc "When this option is on, you will be prompted to confirm when you attempt to move a card to the trash."
+
+  :preferences/auto-update-enabled:title "Enable auto-updates"
+  :preferences/auto-update-enabled:desc "When this is on you will get notified in the app when a new version is available. It will not automatically download or install the new version. Turn this off to disable auto-update messages completely."
+
+  :preferences/auto-update-beta:title "Beta releases"
+  :preferences/auto-update-beta:desc "Help test and debug unreleased features. You will be notified when beta releases become available. You will also be notified when new stable releases become available as well."
+
+  :preferences/auto-update-backup:title "Backup local database"
+  :preferences/auto-update-backup:desc "Before a new version is downloaded, the local database will be backed up. Turn this off to skip local database backups."
+
+  :preferences/search-languages:title "Language support"
+  :preferences/search-languages:desc "Select the languages you want to use when searching. More languages require more memory, and some language combinations are generally incompatible (e.g. Japanese and Chinese)."
+
+  :review-settings/title (fn [& [parent]]
+                           (str "Review settings"
+                                (when parent (str " for " (:name parent)))))
+  :review-settings/desc:global "Here you can adjust the settings that will affect when and how cards will be reviewed. These settings will affect all cards, but can be overridden in the review settings for individual decks or notes."
+  :review-settings/desc:local "Here you can adjust the settings that will affect when and how cards will be reviewed."
+  :review-settings/remember-multiplier "Remember multiplier"
+  :review-settings/remember-multiplier:tooltip "The next review date will increase by this much when you remember a card. // Hint: A value of 2 will double the interval."
+  :review-settings/forgot-multiplier "Forgot multiplier"
+  :review-settings/forgot-multiplier:tooltip "The next review date will decrease by this much when you forget a card. // Hint: A value of 0.5 will halve the interval."
+  :review-settings/max-interval "Max interval"
+  :review-settings/max-interval:days (fn [days] (pluralize days "day"))
+  :review-settings/max-interval:tooltip "The maximum interval between reviews. // Leave blank for no limit."
+  :review-settings/simulator:instructions "Use the buttons below to see how your responses affect the review schedule for a card."
+  :review-settings/simulator:added "Added"
+  :review-settings/simulator:days " days"
+  :review-settings/simulator:remember "Remember"
+  :review-settings/simulator:forget "Forget"
+  :review-settings/simulator:reset "Reset"
+
+  :review-settings/inherit-from-parent "Use setting from parent deck"
+  :review-settings/inherit-from-global "Use global setting"
+  :review-settings/retire-cards-title "Retire cards"
+  :review-settings/retire-cards-desc "When this is enabled, a card that is remembered at or above the max interval will no longer be scheduled for review."
+  :review-settings/retire-cards-yes "Retire"
+  :review-settings/retire-cards-no "Don't retire"
+  :review-settings/multiplier-noise-title "Apply fuzzing"
+  :review-settings/multiplier-noise-desc "When enabled, this adds some random variation to due dates to prevent cards from sticking together."
+  :review-settings/multiplier-noise-yes "Add randomness"
+  :review-settings/multiplier-noise-no "Don't add randomness"
+
+  :review-settings/review-reverse-title "Review cards in reverse"
+  ; :review-settings/review-reverse-desc "For each card, also review the sides from \"back\" to \"front\". The last side will be shown first, followed by the second to last side, etc. Reverse reviews will have a separate review history from normal reviews."
+  :review-settings/review-reverse-desc "When this setting is on, cards with more than one side will be reviewed from top to bottom, as well as bottom to top. The card will maintain two separate review histories, one for each direction."
+  :review-settings/review-reverse-yes "Review reverse"
+  :review-settings/review-reverse-no "Don't review reverse"
+
+  :review-settings/new-cards-limit "Limit new cards per day"
+  :review-settings/new-cards-limit-desc "Here you can choose how many new cards you want to learn each day. You can also leave this blank if you don't want to limit the number of new cards."
+  :review-settings/new-cards-limit-placeholder "No limit"
+  :review-settings/new-cards-limit-cards-per-day "cards/day"
+  :review-settings/save "Save Settings"
+  :review-settings/cancel "Cancel"
+
+  :account-modal/title "Account Settings"
+  :account-modal/update-credit-card "Update credit card"
+  :account-modal/change-password    "Change password"
+  :account-modal/current-plan       "Current plan"
+  :account-modal/already-cancelled  "Already downgraded"
+
+  :sans-serif "Sans serif"
+  :serif "Serif"
+  :monospace "Monospace"
+
+  :sort/sort           "Sort"
+  :sort/direction      "Ascending"
+  :sort/manual         "Clear sort (manual)"
+  :sort/retention-rate "Retention rate"
+  :sort/alphabetical   "Alphabetical"
+  :sort/created-at     "Date created"
+  :sort/updated-at     "Last updated"
+  :sort/interval-length "Last interval"
+  :sort/last-review-date "Last reviewed"
+  :sort/due-date        "Due date"
+  :sort/random          "Random"
+  :sort/referenced-count "Reference count"
+
+  :selection-popover/furigana  "Add furigana"
+  :selection-popover/cloze     "Hide text"
+  :selection-popover/add-side  "Add Side"
+  :selection-popover/split-card  "Split card"
+  :selection-popover/add-card  "New card"
+  :selection-popover/translate "Translate"
+  :selection-popover/add-to-card "Add to card"
+
+  :activate-account/resend-token      "Resend code"
+  :activate-account/token:placeholder "Paste login code here."
+  :activate-account/token-sent        "Activation token sent."
+  :activate-account/submit            "Activate account"
+  :activate-account/submiting         "Activating..."
+
+  :onboarding/go-back "← Go back"
+  :onboarding/welcome "Welcome to Mochi!"
+  :onboarding/desc "Mochi is a tool for creating notes and flash cards to help you remember things."
+  :onboarding/get-started "Get started"
+  :onboarding/already-have-an-account? "Already have an account?"
+
+  :log-in-form/title "Log in to your account"
+  :log-in-form/desc "If you have a Mochi account, log in below to sync your cards and data."
+
+  :log-in/email:placeholder    "Email"
+  :log-in/password:placeholder "Password"
+  :log-in/submit               "Log in"
+  :log-in/submitting           "Logging in..."
+  :log-in/forgot-password?     "Forgot password?"
+
+  :password-recovery/title "Password recovery"
+  :password-recovery/desc "We'll send a unique token to your email address, which you can use to change your password."
+
+  :log-in/send-token "Send token"
+  :log-in/sending-token "Sending..."
+
+  :checkout/monthly   "Pay monthly"
+  :checkout/annually  "Pay annually"
+  :checkout/submit    "Subscribe"
+  :checkout/submiting "Subscribing..."
+  :checkout/cancel    "Upgrade later"
+
+  :breadcrumb/go-to-deck (fn [deck-name] (str "Go to deck: " deck-name))
+  :breadcrumb/click-to-rename "Click to rename deck"
+  :breadcrumb/click-to-move "Click to move to a different deck | M"
+       
+  :dashboard/today "Today"
+  :dashboard/all-time "All time"
+  :dashboard/overview "Overview"
+  :dashboard.charts/period
+  (fn [period]
+    (let [[num unit] period]
+      (if (= num :all)
+        "All time"
+        (str "Last " num " " (name unit)))))
+
+  :dashboard.charts/segment
+  (fn [segment]
+    (case segment
+      :days "Daily"
+      :weeks "Weekly"
+      :months "Monthly"
+      "Unknown"))
+  :last-7-days "Last 7 days"
+  :last-30-days "Last 30 days"
+  :last-3-months "Last 3 months"
+  :last-year "Last year"
+  :all-time "All time"
+       
+  :speech-synthesis/generic-error "Something went wrong!"
+       
+  :mobile-header/preview-card "Preview card"
+  :create-new-card/title "Create new card"
+       
+  :tooltip/attach-media "Attach media to this card"
+  :app/update-available "A new version is available!"
+  :app/mobile-update-available "Update available!"
+       
+  :alert/database-migration-required "Database migration required"
+  :alert/download-1-11-3 "Please download and run version 1.11.3 before using this version."
+
+  :deck-progress/maxed "Burned"
+  :deck-progress/learned "Learned"
+  :deck-progress/total "Total"
+  :deck-progress/archived "Archived"
+       
+  :filterer/no-templates "No templates"
+
+  :actions/pin-card "Pin card"
+  :actions/unpin-card "Unpin card"
+
+  :errors/initial-load:text "Unable to load data"
+  :errors/initial-load:subtext
+  [:<>
+   "An unexpected error occurred while trying to load your local data."
+   [:br] [:br]
+   "Please contact "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+
+  :errors/initial-sync:text "Failed to sync data"
+  :errors/initial-sync:subtext
+  [:<>
+   "There was an error while trying to sync. Please restart the app to try again, or contact "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+
+  :errors/sqlite-migration:text "Unable to migrate database"
+  :errors/sqlite-migration:subtext:android
+  [:<>
+   "There was a problem when trying to migrate the database to SQLite."
+   [:br] [:br]
+   "Falling back to IndexedDB. Please contact "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+  :errors/sqlite-migration:subtext:desktop
+  [:<>
+   "There was a problem when trying to migrate the database to SQLite."
+   [:br] [:br]
+   "Please revert to the previous version and contact "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+  :errors/sqlite-migration:download-link "Download previous version 1.14.7"
+  :errors/sqlite-migration:download-url:mac "https://download.mochi.cards/releases/Mochi-1.14.7.dmg"
+  :errors/sqlite-migration:download-url:linux "https://download.mochi.cards/releases/Mochi-1.14.7.AppImage"
+  :errors/sqlite-migration:download-url:windows "https://download.mochi.cards/releases/Mochi%20Setup%201.14.7.exe"
+       
+  :type-answer/correct "Answer"
+  :icons/remembered "checkmark"
+  :icons/forgot "close"
+  :set-template-alert/replace-content:title "Replace existing content?"
+  :set-template-alert/replace-content:body
+  [:<> "This card already contains content that was created before the current template was applied. Do you want to replace that content with the content from the current template?" [:br]
+       [:br]
+       "Content that will be replaced: "]
+  :set-template-alert/replace-primary-field:title "Add content to primary field?"
+  :set-template-alert/replace-primary-field:body
+  [:<> "Do you want to use the card's current content as the value for the primary field?"
+       [:br] [:br]
+       "The primary field already contains the following value:"]
+       
+  :transcription/attachment-not-found-error "Input attachment not found."
+  :transcription/attachment-too-large-error "Input attachment exceeds max file size of 1MB."
+
+  :modal.settings.sections/account "Account"
+  :modal.settings.pages/profile "Profile"
+  :modal.settings.pages.profile.submit/success "Profile updated successfully."
+  :modal.settings.pages.profile.submit/error "Unable to update profile."
+  :modal.settings.pages.profile.name/title "Name"
+  :modal.settings.pages.profile.name/desc "Should match your payment method."
+  :modal.settings.pages.profile.email/title "Email"
+  :modal.settings.pages.profile.email/desc "How we can reach you."
+  :modal.settings.pages.profile.password/title "Password"
+  :modal.settings.pages.profile.password/desc "Your password needs to be at least 6 characters long."
+  :modal.settings.pages.profile.danger-zone/title "Danger zone"
+  :modal.settings.pages.profile.danger-zone/desc "This will delete your user account, billing information, and any cloud data backups."
+
+  :modal.settings.pages/subscription "Subscription"
+
+  :modal.settings.sections/preferences "Preferences"
+  :modal.settings.pages/appearance "Appearance"
+  :modal.settings.options.custom-translations/title "Custom translations"
+  :modal.settings.options.custom-translations/desc [:<> "Upload an EDN file containing translation overrides. " [:a {:href "https://github.com/mochi-cards/mochi-translations" :target "_blank"} "Learn more"] "."]
+
+  :modal.settings.pages/cards "Cards"
+  :modal.settings.pages/editing "Editing"
+  :modal.settings.pages/decks "Decks"
+  :modal.settings.pages/attachments "Attachments"
+  :modal.settings.pages/notebook-view "Notebook view"
+  :modal.settings.pages/notifications "Notifications"
+
+  :modal.settings.sections/reviewing "Reviewing"
+  :modal.settings.pages/review-settings "Review settings"
+  :modal.settings.pages/scheduling "Scheduling"
+
+  :modal.settings.sections/system "System"
+  :modal.settings.pages/general "General"
+  :modal.settings.pages/app-update "App update"
+  :modal.settings.pages/search "Search"
+  :modal.settings.pages/experimental "Experimental"
+
+  :settings.custom-translation.error.alert/text "Could not parse translation file"
+  :settings.custom-translation.error.alert/subtext "Please check the EDN syntax."
+
+  :settings.custom-translation/no-translation "No custom translation"
+  :settings.custom-translation/new-translation "Add translation"
+  :settings.custom-translation/loading "Loading..."
+
+  :modal.settings/inherited-setting-label (fn [inherited-by] [:<> "Default: " [:strong inherited-by]])
+  :modal.settings/inherited-setting-tooltip-deck (fn [deck-name] (str "This setting has been inherited from the deck " deck-name))
+  :modal.settings/inherited-setting-tooltip-global "This setting has been inherited from Base settings"
+
+  :preferences/css-theme:no-theme "No theme"
+  :preferences/css-theme:new-theme "Add theme"}
+
+
+ :ja {
+      :side-bar/dashboard "ダッシュボード"
+      :side-bar/new-cards "新規カード"
+      :side-bar/settings "設定"
+      :side-bar/due-today "今日の復習"
+      :side-bar/jump-to "検索"
+      :side-bar/add-deck "新規デッキ"
+
+      :side-bar.account/log-in   "ログイン"
+      :side-bar.account/log-out   "ログアウト"
+
+      :side-bar.account/sign-up  "登録する"
+      :sign-up/heading           "登録"
+      :sign-up/submit            "登録する"
+      :sign-up/submit-loading    "登録中…"
+      :sign-up.checkout/heading "チェックアウト"
+
+      :side-bar.account/logged-out "ゲスト"
+      :side-bar.account/offline "オフライン"
+
+      :onboarding/go-back "← 戻る"
+      :onboarding/welcome "Mochiへようこそ！"
+      :onboarding/desc "Mochiは、物事を覚えるためのメモやフラッシュカードを作成するためのツールです。"
+      :onboarding/get-started "開始"
+      :onboarding/already-have-an-account? "アカウントをお持ちですか？"
+
+      :log-in-form/title "ログインする"
+      :log-in-form/desc "Mochi Proアカウントをお持ちの方、 下記からログインしてカードとデータを同期してください。"
+      :log-in/email:placeholder    "電子メール"
+      :log-in/password:placeholder "パスワード"
+      :log-in/submit     "ログイン"
+      :log-in/submitting "ログイン中…"
+      :log-in/forgot-password?     "パスワードをお忘れですか？"
+
+      :password-recovery/title "パスワード復旧"
+      :password-recovery/desc "パスワードの変更に使用できるトークンをメールでお送りします。"
+
+      :log-in/send-token "トークンを送る"
+      :log-in/sending-token "送る中…"
+
+
+      :history-tooltip "このカードの復習のログ"
+      :history "復習のログ"
+
+      :finished-reviews "今日は完成！"
+      :finished-learning "今日は完成！"
+
+      :delete "消去"
+      :delete-card "カードを消去する"
+      :delete-note "メモを消去する"
+      :delete-deck "デッキを消去する"
+      :export "エクスポートする"
+      :export-note "メモをエクスポートする"
+      :export-deck "デッキをエクスポートする"
+
+      :edit "編集"
+      :edit-note "メモを編集する"
+      :edit-card "カードを編集する"
+
+      ;; Import progress modal
+      :importing "インポート中…"
+      :exporting "エクスポート中…"
+      :import "インポート"
+
+      :default-deck-name "新規デッキ"
+      :selection-popover/add-card "新規カード" ;; Make card from selection
+      :save "保存"
+      :saving "保存中"
+      :cancel "キャンセル"
+      :new "新規"
+      :back "前に"
+
+      :card-content-placeholder "何かが覚えたい？"
+
+      :pages.deck.review-button/label       "カードを復習する"
+      :pages.deck.review-button/label:empty "今日のカードなし"
+
+      :pages.deck.learn-button/label       "新規カード"
+      :pages.deck.learn-button/label:empty "新規カードなし"
+
+      :pages.deck.quick-review-button/label   "総学習"
+
+      :no-due-cards "今日のカードなし"
+      :copy-link "ＩＤをコピー"
+
+      :move-card-to "移動…"
+
+      ;; Review History
+      :learned "覚えた"
+
+      :preview "プレビュー"
+
+      :are-you-sure-you-want-to-delete-deck
+        "このデッキを消去しますか？"
+      :yes-delete-deck "はい、消去する。"
+      :are-you-sure-you-want-to-delete-note
+        "このメモを消去しますか？"
+      :yes-delete-note "はい、消去する。"
+
+      :make-cards-from-note "Make cards from this note"
+      :make-cards-tooltip "このメーモからカードを自動的に作成する"
+
+      :cant-find-note "このメモを探すのはできません！"
+      :cant-find-deck "このデックを探すのはできません！"
+
+      :note-content-placeholder "何が書きたいですか？"
+
+      :add-to-reviews "復習に追加"
+
+      :add-card "新規カード"
+
+      ;; Modal message
+      :imported-deck-already-exists "このデックはもうあります。"
+      :imported-note-already-exists "このメーモはもうあります。"
+      :imported-card-already-exists "このカードはもうあります。"
+
+      ;; Auto card generation from notes.
+      :no-new-cards-found "新規カードを見つけられません。"
+
+      :auto-update {:update-available "アップデート！"
+                    :backing-up       "バックアップ中…"
+                    :downloading      "ダウンロード中…"
+                    :downloaded       "アップデートするためにリスタート"}
+
+      :update-credit-card "クレジットカードを変える"
+      :updating-credit-card "クレジットカードを変える中"
+
+      :account-settings "アカウントの設定"
+
+      :all-synced "All synced"
+      :syncing "同期中…"
+      :reconnecting "Retrying..."
+      :sync-failed "Sync failed"
+
+      :archive-note "メモをアーカイブ"
+      :archive-deck "デックをアーカイブ"
+      :archived "アーカイブ"
+
+      :trash "ゴミ箱"
+
+      :breadcrumb/go-to-deck (fn [deck-name] (str deck-name "に行く"))
+      :dashboard/today "今日"
+      :dashboard/overview "概要"
+
+      :chart/total-cards-learned      "知ったカードの総計"
+      ; :chart/number-of-cards-reviewed "Reviews"
+      :chart/number-of-cards-learned  "新規カードを知った"
+      ; :chart/retention-rate           "Retention rate"
+
+      :search-placeholder "このデッキの中に検索"
+
+      :interval-settings "復習の設定"
+
+      :template-settings "テンプレート"
+      :template-settings/title "テンプレート"
+      :template-settings/subtitle "新規カードを作ったら指定テンプレートが利用されます。またカードずつのテンプレートを指定することができます。テンプレートなしの場合は、カードで直接的になんでも書ける。"
+      :template-settings/new-template "新規テンプレート"
+      :template-settings/no-template "テンプレートなし"
+      :template-settings/template-fields "テンプレートのフィールド"
+      :template-settings/template-fields:hint "フィールドを使用すると、カードにデータを追加できます。フィールドの値はテンプレートで使用できます。"
+
+      :sort/sort            "ソート"
+      :sort/direction       "Ascending"
+      :sort/manual          "Clear sort (manual)"
+      :sort/retention-rate  "Retention rate"
+      :sort/alphabetical    "辞書的に"
+      :sort/created-at      "作成日順"
+      :sort/updated-at      "更新日順"
+      :sort/interval-length "Last interval"
+      :sort/due-date        "Due date"
+      :sort/random          "順序不同"
+
+      :deck/filter "フィルタ"
+      :deck-page/search-placeholder "このデックを検索する"
+      :preferences "環境設定"
+      :export/everything "すべてをエクスポート"
+
+      :deck-preferences "デックの設定"
+      :rename "名前を変更する"
+      :duplicate "複製する"
+      :deck-views/add-view "新規ビュー"
+
+      :preferences/title "環境設定"
+      :preferences/font-style "フォントスタイル"
+      :preferences/font-size "フォントサイズ"
+      :preferences/dark-mode "ダークモード"
+      :preferences/code-block-soft-wrap:title "コードブロックのソフトラップ"
+      :preferences/code-block-soft-wrap:desc "マークダウンのコードブロック内の行がウィンドウ幅を超えた場合、次の行に折り返します。"
+
+      :type-answer/correct "成功"
+
+      :review-settings/title (fn [& [parent]]
+                               (str (when parent (str (:name parent) "の"))
+                                    "復習の設定"))
+      :review-settings/desc:global "ここではカードをどのように復習するかについて設定を調整できます。これらの設定は全てのカードに影響しますが個々のデッキやノートの復習の設定によって上書きされます。"
+      :review-settings/desc:local "ここではカードをどのように復習するかについて設定を調整できます。"
+      :review-settings/remember-multiplier "記憶乗数"
+      :review-settings/remember-multiplier:tooltip "この設定値はカードを覚えた時の次回の復習日を遠くします。 // ヒント: 2であれば復習間隔を2倍にします。"
+      :review-settings/forgot-multiplier "忘却乗数"
+      :review-settings/forgot-multiplier:tooltip "この設定値はカードを忘れた時の次回の復習日を近くします。 // ヒント: 0.5であれば復習の間隔を半分にします。"
+      :review-settings/max-interval "最大間隔"
+      :review-settings/max-interval:days (fn [_] "日")
+      :review-settings/max-interval:tooltip "次回の復習までの最大間隔。 // 制限を設けたくなければ空欄にしてください。"
+      :review-settings/simulator:instructions "下のボタンを使うとカードへのアクションがどのように復習スケジュールへ影響するか確認できます。"
+      :review-settings/simulator:added "追加した"
+      :review-settings/simulator:days "日"
+      :review-settings/simulator:remember "覚えた"
+      :review-settings/simulator:forget "忘れた"
+      :review-settings/simulator:reset "リセット"
+
+      :review-settings/inherit-from-parent "Use setting from parent deck"
+      :review-settings/inherit-from-global "Use global setting"
+
+      :review-settings/retire-cards-title "最大間隔に達したカードを学習から外す"
+      :review-settings/retire-cards-desc "このオプションが有効な場合、カードの復習期間が最大間隔に達しているカードは復習に含まれなくなります。オプションが無効な場合は復習期間が最大間隔のまま引き続き復習に含まれます。"
+      :review-settings/retire-cards-yes "外す"
+      :review-settings/retire-cards-no "外さない"
+
+      :review-settings/multiplier-noise-title "復習期限にランダム性を追加"
+      :review-settings/multiplier-noise-desc "この設定が有効な場合、少しのランダム性を復習期限に追加します。これによって同じカードのグループが同じ日に現れることを防ぐことができます。上のシミュレーターを使ってランダム性がどのように動作しているか確認できます。"
+      :review-settings/multiplier-noise-yes "ランダム性を追加"
+      :review-settings/multiplier-noise-no "ランダム性を追加しない"
+
+      :review-settings/review-reverse-title "カードの順序を変更"
+      ; :review-settings/review-reverse-desc "For each card, also review the sides from \"back\" to \"front\". The last side will be shown first, followed by the second to last side, etc. Reverse reviews will have a separate review history from normal reviews."
+      :review-settings/review-reverse-desc "この設定では、面が複数あるカードは上から下へ、また下から上へというようにカード内の復習の順序を変更できます。カードはそれぞれの順序の復習履歴を保存します。"
+      :review-settings/review-reverse-yes "逆順にする"
+      :review-settings/review-reverse-no "逆順にしない"
+
+      :review-settings/new-cards-limit "1日のカード制限"
+      :review-settings/new-cards-limit-desc "ここでは1日に何枚のカードを勉強したいかを設定できます。枚数に制限を設けたくなければフォームを空欄にしてください。"
+      :review-settings/new-cards-limit-placeholder "制限なし"
+      :review-settings/new-cards-limit-cards-per-day "枚/日"
+
+      :review-settings/save "設定を保存"
+      :review-settings/cancel "キャンセル"
+
+      :icons/remembered "circle"
+      :icons/forgot "close"
+
+      :review/remember "覚えた"
+      :review/forgot   "忘れた"
+      :review/again    "再び"
+       
+      :alert.cannot-delete-template/title "テンプレートを消去できません。"
+      :alert.cannot-delete-template/cards-using "このテンプレートを使ったカードがあります。"
+      :alert.cannot-delete-template/delete-cards-first "これらのカードを削除するか、別のテンプレートに変更してください。"}}
