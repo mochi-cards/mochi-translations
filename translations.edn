@@ -1,5 +1,6 @@
 {:en
  {:home "Home"
+
   :side-bar/decks         "Decks"
   :side-bar/tags          "Tags"
   :side-bar/templates     "Templates"
@@ -13,6 +14,7 @@
   :side-bar/settings      "Settings"
   :side-bar/jump-to       "Search"
   :side-bar/add-deck      "New Deck"
+  :side-bar/inbox         "Inbox"
 
   :embedded-card/remember "Remembered"
   :embedded-card/forgot   "Forgot"
@@ -421,7 +423,7 @@
    :auto-update.status/downloading      "Downloading..."
    :auto-update.status/downloaded       "Restart to update"
    :auto-update.status/failed           "Update failed"}
-       
+      
   ;; Account modal
   :account.settings/delete-account "Delete my account"
   :account.settings/deleting-account "Deleting account"
@@ -443,7 +445,7 @@
   :confirm-and-sync "Sync content"
   :upgrade          "Upgrade"
   :pro "Pro"
-       
+      
   :account-modal/are-you-sure-downgrade? "Are you sure you want to downgrade?"
   :account-modal/downgrade-subtext "Your plan will switch at the end of the billing period. You can still access your data offline with the free plan."
   :account-modal/confirm-downgrade "Yes, switch to the free plan"
@@ -452,14 +454,14 @@
   :account-modal/confirm-password "Confirm your password to continue."
   :account-modal/confirm-upgrade "Upgrade"
   :account-modal/confirm-upgrade:loading "Upgrading..."
-       
+      
   ;; Checkout modal
-       
+      
   ;; Attachments
   :attachments/too-large:title "Attachment too large"
   :attachments/too-large:subtext "Attachments larger than 5MB are currently not supported."
   :file-too-big "Attachments larger than 5MB are not supported."
-       
+      
   :ok "Ok"
 
   ;; Deck page
@@ -477,7 +479,7 @@
 
   ;; CouchDB connection
   :couchdb-auth-failed "Unable to connect to remote database. Please contact support@mochi.cards"
-       
+      
   :markdown/heading-1       "H1"
   :markdown/heading-2       "H2"
   :markdown/heading-3       "H3"
@@ -558,12 +560,12 @@
   :password-confirmation "Password confirmation"
 
   :account-settings "Account settings"
-       
+      
   :all-synced "All synced"
   :syncing "Syncing..."
   :reconnecting "Retrying..."
   :sync-failed "Sync failed"
-       
+      
   :import-desktop-only "Importing is currently only supported in the desktop and mobile apps."
 
   :review/review-cards "Review cards"
@@ -621,7 +623,7 @@
   :deck-stats/total-num-of-cards
   (fn [card-count]
     (str "There are " card-count " " (pluralize card-count "card") " in this deck"))
-       
+      
   ;; TODO: add sign up / sign in / subscribe button
   ;; TODO: Change copy depending on state.
   :banners/web-free-account-warning
@@ -698,9 +700,9 @@
   :close "Close"
   :undo "Undo"
   :redo "Redo"
-       
+      
   :card-actions/review-reverse "Review reverse"
-       
+      
   :kbd/ctrl  "Ctrl"
   :kbd/enter "⏎"
   :kbd/esc   "Esc"
@@ -875,7 +877,7 @@
   :breadcrumb/go-to-deck (fn [deck-name] (str "Go to deck: " deck-name))
   :breadcrumb/click-to-rename "Click to rename deck"
   :breadcrumb/click-to-move "Click to move to a different deck | M"
-       
+      
   :dashboard/today "Today"
   :dashboard/all-time "All time"
   :dashboard/overview "Overview"
@@ -898,16 +900,16 @@
   :last-3-months "Last 3 months"
   :last-year "Last year"
   :all-time "All time"
-       
+      
   :speech-synthesis/generic-error "Something went wrong!"
-       
+      
   :mobile-header/preview-card "Preview card"
   :create-new-card/title "Create new card"
-       
+      
   :tooltip/attach-media "Attach media to this card"
   :app/update-available "A new version is available!"
   :app/mobile-update-available "Update available!"
-       
+      
   :alert/database-migration-required "Database migration required"
   :alert/download-1-11-3 "Please download and run version 1.11.3 before using this version."
 
@@ -915,7 +917,7 @@
   :deck-progress/learned "Learned"
   :deck-progress/total "Total"
   :deck-progress/archived "Archived"
-       
+      
   :filterer/no-templates "No templates"
 
   :actions/pin-card "Pin card"
@@ -956,7 +958,7 @@
   :errors/sqlite-migration:download-url:mac "https://download.mochi.cards/releases/Mochi-1.14.7.dmg"
   :errors/sqlite-migration:download-url:linux "https://download.mochi.cards/releases/Mochi-1.14.7.AppImage"
   :errors/sqlite-migration:download-url:windows "https://download.mochi.cards/releases/Mochi%20Setup%201.14.7.exe"
-       
+      
   :type-answer/correct "Answer"
   :icons/remembered "checkmark"
   :icons/forgot "close"
@@ -970,9 +972,12 @@
   [:<> "Do you want to use the card's current content as the value for the primary field?"
        [:br] [:br]
        "The primary field already contains the following value:"]
-       
+      
   :transcription/attachment-not-found-error "Input attachment not found."
   :transcription/attachment-too-large-error "Input attachment exceeds max file size of 1MB."
+  :modal.settings/inherited-setting-label (fn [x] [:<> "Using default: " [:strong x]])
+  :modal.settings/inherited-setting-tooltip-deck #(str "This setting has been inherited from the deck " %)
+  :modal.settings/inherited-setting-tooltip-global "This setting has been inherited from Base settings"
 
   :modal.settings.sections/account "Account"
   :modal.settings.pages/profile "Profile"
@@ -1018,10 +1023,6 @@
   :settings.custom-translation/new-translation "Add translation"
   :settings.custom-translation/loading "Loading..."
 
-  :modal.settings/inherited-setting-label (fn [inherited-by] [:<> "Default: " [:strong inherited-by]])
-  :modal.settings/inherited-setting-tooltip-deck (fn [deck-name] (str "This setting has been inherited from the deck " deck-name))
-  :modal.settings/inherited-setting-tooltip-global "This setting has been inherited from Base settings"
-
   :preferences/css-theme:no-theme "No theme"
   :preferences/css-theme:new-theme "Add theme"}
 
@@ -1033,6 +1034,7 @@
       :side-bar/due-today "今日の復習"
       :side-bar/jump-to "検索"
       :side-bar/add-deck "新規デッキ"
+      :side-bar/inbox     "受信トレイ"
 
       :side-bar.account/log-in   "ログイン"
       :side-bar.account/log-out   "ログアウト"
@@ -1269,7 +1271,7 @@
       :review/remember "覚えた"
       :review/forgot   "忘れた"
       :review/again    "再び"
-       
+      
       :alert.cannot-delete-template/title "テンプレートを消去できません。"
       :alert.cannot-delete-template/cards-using "このテンプレートを使ったカードがあります。"
       :alert.cannot-delete-template/delete-cards-first "これらのカードを削除するか、別のテンプレートに変更してください。"}}
