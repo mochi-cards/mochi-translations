@@ -1153,6 +1153,1248 @@
     [:<> "Press " space " if remembered, or " f " if forgot."])}
 
 
+ :fr
+ {:home "Accueil"
+
+  :side-bar/decks         "Paquets"
+  :side-bar/tags          "Étiquettes"
+  :side-bar/templates     "Modèles"
+  :side-bar/pins          "Épinglées"
+  :side-bar/empty-deck    "Aucun sous-paquet"
+  :side-bar/dashboard     "Tableau de bord"
+  :side-bar/undo          "Annuler"
+  :side-bar/redo          "Rétablir"
+  :side-bar/due-today     "À réviser aujourd'hui"
+  :side-bar/new-cards     "Nouvelles cartes"
+  :side-bar/settings      "Réglages"
+  :side-bar/jump-to       "Rechercher"
+  :side-bar/add-deck      "Nouveau paquet"
+  :side-bar/inbox         "Boîte de réception"
+
+  :embedded-card/remember "Retenu"
+  :embedded-card/forgot   "Oublié"
+
+  :review/remember "Retenu"
+  :review/forgot   "Oublié"
+
+  :chart/total-cards-learned      "Cartes apprises (cumul)"
+  :chart/number-of-cards-learned  "Cartes apprises"
+  :chart/number-of-cards-reviewed "Révisions"
+  :chart/retention-rate           "Taux de rétention"
+  :chart/review-time              "Temps de révision"
+  :chart/review-forecast          "Prévisions de révision"
+  :chart/intervals                "Intervalles"
+
+  :chart/previous-period          " période précédente"
+
+  :dashboard.stats/today "Aujourd'hui"
+  :dashboard.stats/all-time "Depuis le début"
+  :dashboard.stats/average "Moyenne"
+
+  :dashboard/overview "Vue d'ensemble"
+
+  :dashboard.deck-selector/all-decks "Tous les paquets"
+  :dashboard.deck-selector/placeholder "Rechercher un paquet"
+
+  :dashboard.charts/period
+  (fn [period]
+    (let [[num unit] period]
+      (if (= num :all)
+        "Depuis le début"
+        (str num " "
+             (case unit
+               :days   (if (> num 1) "derniers jours" "dernier jour")
+               :weeks  (if (> num 1) "dernières semaines" "dernière semaine")
+               :months (if (> num 1) "derniers mois" "dernier mois")
+               (name unit))))))
+
+  :dashboard.charts/segment
+  (fn [segment]
+    (case segment
+      :days "Par jour"
+      :weeks "Par semaine"
+      :months "Par mois"
+      "Inconnu"))
+
+  :pages.dashboard.duration/hour (fn [num] "h")
+  :pages.dashboard.duration/minute (fn [num] "min")
+  :pages.dashboard.duration/second (fn [num] "s")
+
+  :pages.dashboard.charts.deck-progress/title "Progression du paquet"
+  :pages.dashboard.charts.deck-progress.select-deck/placeholder "Rechercher un paquet"
+  :pages.dashboard.charts.deck-progress/details "Détails"
+
+  :pages.dashboard.stats/cards-learned "Cartes apprises"
+  :pages.dashboard.stats/cards-learned-average "Moy. cartes/jour"
+
+  :pages.dashboard.stats/retention-rate "Taux de rétention"
+
+  :pages.dashboard.stats/total-reviews "Total des révisions"
+  :pages.dashboard.stats/total-reviews-average "Moy. révisions/jour"
+
+  :pages.dashboard.stats/review-time "Temps de révision"
+  :pages.dashboard.stats/review-time-average "Moy. temps/jour"
+
+  :pages.dashboard.review-heatmap/title "Activité de révision"
+  :pages.dashboard.review-heatmap/summary
+  (fn [total-reviews total-days active-days]
+    [:<>
+     [:strong (intcomma total-reviews)]
+     " révisions sur "
+     [:strong (intcomma total-days)]
+     " jours • "
+     [:strong (intcomma active-days)]
+     " jours actifs"])
+  :pages.dashboard.review-heatmap/tooltip
+  (fn [num date] (str num " " (if (> num 1) "révisions" "révision") " le " date))
+
+
+
+  :card.tags.retired/label "Retirée"
+  :card.tags.retired/tooltip (fn [max-interval] (str "Cette carte a atteint l'intervalle maximum de " max-interval " jours // Elle ne sera plus proposée en révision"))
+  :card.tags.due-date/tooltip (fn [due today due-str]
+                                (if (>= due today)
+                                  (str "Cette carte sera à réviser le " due-str)
+                                  (str "Cette carte était à réviser le " due-str)))
+  :card.tags.pinned/label "Épinglée"
+  :card.tags.trashed/label "À la corbeille"
+  :card.tags.archived/label "Archivée"
+
+
+  :side-bar.account/logged-out "Déconnecté"
+  :side-bar.account/log-in   "Se connecter"
+  :side-bar.account/log-out  "Se déconnecter"
+  :side-bar.account/sign-up  "Créer un compte"
+  :side-bar.account/offline "Hors ligne"
+
+  :sign-up/heading           "Créer un compte"
+  :sign-up/submit            "Créer un compte"
+  :sign-up/submit-loading    "Création du compte..."
+  :sign-up/cancel            "Plus tard"
+
+  :sign-up/name:placeholder "Nom"
+  :sign-up/email:placeholder "Adresse e-mail"
+  :sign-up/password:placeholder "Mot de passe"
+  :sign-up/confirm-password:placeholder "Confirmer le mot de passe"
+
+  :sign-up.verify/heading "Vérification"
+
+  :sign-up.checkout/heading "Paiement"
+  :interval-settings "Réglages de révision"
+  :template-settings "Modèle"
+  :template-settings/title "Modèles"
+  :template-settings/subtitle "Quand tu crées une carte, elle utilise le modèle sélectionné. Le modèle peut aussi être choisi carte par carte. Si aucun modèle n'est défini, tu peux écrire librement en markdown dans la carte."
+  :template-settings/new-template "Nouveau modèle"
+  :template-settings/no-template "Aucun modèle"
+  :template-settings/template-fields "Champs du modèle"
+  :template-settings/template-fields:hint "Les champs permettent d'ajouter des données structurées à tes cartes. Tu peux les utiliser dans le modèle."
+
+  :template-settings/attachments "Pièces jointes"
+  :template-settings/attachments:hint "Tu peux joindre des fichiers, images ou sons, à tes modèles pour les réutiliser dans chaque carte."
+
+  :template/confirm-delete "Vraiment supprimer ce modèle ?"
+  :template/yes-delete "Supprimer le modèle"
+  :template/editor-placeholder "Écris en markdown ou tape « / » pour ajouter un champ"
+
+  :field/name-placeholder "Nom du champ"
+  :field/confirm-delete "Vraiment supprimer ce champ ?"
+  :field/delete-subtext "Ce champ sera aussi retiré de toutes les cartes qui l'utilisent."
+  :field/yes-delete "Supprimer le champ"
+  :field/primary-description "C'est le champ principal de la carte, il ne peut pas être supprimé.\nIl sert à représenter la carte ailleurs dans l'interface."
+
+  :fields.dictionary/hide-term "Masquer le terme"
+
+  :attachment/confirm-delete "Vraiment retirer cette pièce jointe ?"
+  :attachment/delete-subtext "La pièce jointe sera supprimée définitivement."
+  :attachment/yes-delete "Retirer la pièce jointe"
+
+  :confirm-reset-templates/title "Appliquer ce modèle à toutes les cartes ?"
+  :confirm-reset-templates/description "Toutes les cartes du paquet utiliseront le modèle sélectionné. Les cartes qui utilisaient un autre modèle conserveront leurs données, mais tu ne pourras plus les voir ni les modifier."
+  :confirm-reset-templates/confirm "Changer de modèle"
+
+  :preferences "Préférences"
+
+  :deck-preferences "Réglages du paquet"
+
+  :reset-review-history "Réinitialiser l'historique"
+  :confirm-reset-review-history/title "Réinitialiser l'historique de révision ?"
+  :confirm-reset-review-history/description "L'historique de révision sera effacé pour toutes les cartes de ce paquet."
+  :confirm-reset-review-history/description-card "Toutes les révisions, normales et inversées, seront effacées pour cette carte."
+  :confirm-reset-review-history/description-note "L'historique de révision sera effacé pour toutes les cartes de cette note."
+  :confirm-reset-review-history/confirm "Effacer toutes les révisions"
+
+  :toast/reviews-reset "Historique de révision effacé"
+
+  ;; Vues des cartes
+  :note-view "Vue carnet"
+  :list-view "Vue liste"
+  :table-view "Vue tableau"
+  :column-view "Vue colonnes"
+  :grid-view "Vue grille"
+  :unknown-view "Vue inconnue"
+
+  :x-cards-due-today-from-deck
+  (fn [card-count]
+    (if (> card-count 1)
+      (str card-count " cartes de ce paquet sont à réviser aujourd'hui")
+      (str card-count " carte de ce paquet est à réviser aujourd'hui")))
+  :x-cards-due-today-from-note
+  (fn [card-count]
+    (if (> card-count 1)
+      (str card-count " cartes de cette note sont à réviser aujourd'hui")
+      (str card-count " carte de cette note est à réviser aujourd'hui")))
+  :x-cards-due
+  (fn [card-count]
+    (if (> card-count 1)
+      (str "Tu as " card-count " cartes à réviser aujourd'hui")
+      (str "Tu as " card-count " carte à réviser aujourd'hui")))
+  :x-new-cards
+  (fn [card-count]
+    (if (> card-count 1)
+      (str "Tu as " card-count " nouvelles cartes à apprendre")
+      (str "Tu as " card-count " nouvelle carte à apprendre")))
+  :x-cards-reviewed
+  (fn [review-count rereview-count]
+    (str "Tu as révisé " review-count " " (if (> review-count 1) "cartes" "carte") " aujourd'hui // "
+         rereview-count " " (if (> rereview-count 1) "cartes sont à revoir" "carte est à revoir")))
+
+  :x-cards-learned
+  (fn [card-count]
+    (str "Tu as appris " card-count " " (if (> card-count 1) "cartes" "carte") " aujourd'hui"))
+
+  :review-reverse-enabled-for-deck "Les révisions inversées sont activées pour ce paquet."
+
+  ;; Vue d'une carte
+  :add-card "Nouvelle carte"
+  :history-tooltip "L'historique de révision de cette carte"
+  :history "Historique de révision"
+  :reverse-history "Historique inversé"
+
+  :public "Public"
+  :published "Publié"
+  :archived "Archivé"
+  :archive-card "Archiver la carte"
+  :archive-deck "Archiver le paquet"
+  :archive-note "Archiver la note"
+  :deck-archive-tooltip "Les cartes de ce paquet ne seront plus proposées en révision."
+
+  :archive-deck-tooltip "Quand un paquet est archivé, aucune de ses cartes n'est proposée en révision."
+  :archive-note-tooltip "Quand une note est archivée, aucune de ses cartes n'est proposée en révision."
+
+  ;; Fenêtre modale d'une carte
+  :move-card-to "Déplacer la carte vers..."
+
+
+  ;; Boutons de révision
+  :pages.deck.review-button/label       "Réviser"
+  :pages.deck.review-button/label:empty "Réviser"
+  :pages.deck.review-button/tooltip
+  (fn [card-count]
+    (str "Réviser " card-count " " (if (> card-count 1) "cartes dues" "carte due") " aujourd'hui"))
+  :pages.deck.review-button/tooltip:empty "Aucune carte à réviser aujourd'hui // Apprendre de nouvelles cartes les planifiera pour plus tard."
+
+  :pages.deck.learn-button/label       "Nouvelles cartes"
+  :pages.deck.learn-button/label:empty "Nouvelles cartes"
+  :pages.deck.learn-button/tooltip     "Apprendre de nouvelles cartes et les ajouter au calendrier de révision"
+
+  :pages.deck.quick-review-button/label   "Express"
+  :pages.deck.quick-review-button/tooltip "Révision rapide des cartes filtrées ou recherchées // Sans effet sur le calendrier de révision"
+  :pages.deck.save-deck/label "Enregistrer le paquet"
+  :pages.deck.save-deck/label:loading "Copie du paquet"
+  :pages.deck.save-deck/tooltip "Enregistrer ce paquet dans ta collection"
+  :pages.deck.publish/label "Partager"
+
+  :pages.deck.publish/tooltip "Une fois publié, toute personne disposant du lien peut consulter ce paquet"
+  :pages.deck.publish/tooltip:you-must-be-logged-in "Tu dois être connecté pour publier"
+  :pages.deck.publish/tooltip:upgrade "Passe à Mochi Pro pour publier"
+  :pages.deck.publish/copy "Copier le lien"
+  :pages.deck.publish/copied "Copié !"
+
+  :save-deck/loading                 "Copie du paquet"
+  :save-deck/downloading-cards       "Téléchargement des cartes..."
+  :save-deck/saving-cards            "Enregistrement des cartes..."
+  :save-deck/downloading-attachments "Téléchargement des pièces jointes..."
+  :save-deck/saving-attachments      "Enregistrement des pièces jointes..."
+  :save-deck/updating-refs           "Mise à jour des références..."
+
+  :save-deck-prompt/title   (fn [deck-name] (str "Enregistrer « " deck-name " » dans ta collection ?"))
+  :save-deck-prompt/subtext "Veux-tu enregistrer ce paquet pour conserver ta progression ?"
+  :save-deck-prompt/yes     "Enregistrer le paquet"
+  :save-deck-prompt/no      "Pas maintenant"
+
+  :deck/filter "Filtrer"
+
+  ;; Historique de révision
+  :learned "Apprise"
+
+  ;; Menu d'ajout
+  :new-blank-deck "Nouveau paquet vide"
+  :new-blank-note "Nouvelle note vide"
+  :new-deck-from-template "Nouveau paquet à partir d'un modèle"
+  :import-deck "Importer un paquet"
+  :import "Importer"
+  :browse-online "Parcourir la base en ligne"
+
+  ;; Noms par défaut à la création
+  :default-note-name "Note sans titre"
+  :default-deck-name "Nouveau paquet"
+
+  ;; Alerte à la fermeture d'une fenêtre en cours d'édition
+  :alert.unsaved-changes/title "Abandonner les modifications ?"
+  :alert.unsaved-changes/subtext "Tu as des modifications non enregistrées. Veux-tu vraiment les abandonner ?"
+  :alert.unsaved-changes/subtext:new-card "Tu as des modifications non enregistrées. Veux-tu les abandonner avant de créer une nouvelle carte ?"
+  :alert.unsaved-changes/confirm "Fermer et abandonner"
+  :alert.unsaved-changes/confirm:new-card "Abandonner les modifications"
+  :alert.unsaved-changes/cancel "Continuer à modifier"
+
+  :alert.cannot-delete-template/title "Impossible de supprimer le modèle"
+  :alert.cannot-delete-template/cards-using "Des cartes utilisent encore ce modèle."
+  :alert.cannot-delete-template/delete-cards-first "Supprime d'abord ces cartes, ou bascule-les sur un autre modèle."
+
+  :do-you-want-to-save-first? "Abandonner les modifications ?"
+  :do-you-want-to-save-first/subtext "Tu as des modifications non enregistrées. Veux-tu vraiment les abandonner ?"
+  :save "Enregistrer"
+  :save-and-close "Enregistrer et fermer"
+  :save-and-new "Enregistrer et ajouter"
+  :account.general-info/save "Mettre à jour le compte"
+  :account.general-info/saving "Mise à jour du compte"
+  :done "Terminé"
+  :saving "Enregistrement"
+  :cancel "Annuler"
+  :delete "Mettre à la corbeille"
+  :rename "Renommer"
+  :move-to "Déplacer vers"
+  :add-nested-deck "Ajouter un sous-paquet"
+  :delete-card "Supprimer la carte"
+  :delete-note "Supprimer la note"
+  :delete-deck "Supprimer le paquet"
+  :export-note "Exporter la note"
+
+  :multi-card-actions/button-label "Actions"
+  :multi-card-actions/move "Déplacer vers"
+  :multi-card-actions/archive "Archiver"
+  :multi-card-actions/unarchive "Désarchiver"
+  :multi-card-actions/pin "Épingler"
+  :multi-card-actions/unpin "Désépingler"
+  :multi-card-actions/delete "Supprimer"
+  :multi-card-actions/learn "Ajouter aux révisions"
+  :multi-card-actions/reset-reviews "Réinitialiser l'historique"
+  :multi-card-actions/review-reverse:on "Activer la révision inversée"
+  :multi-card-actions/review-reverse:off "Désactiver la révision inversée"
+  :multi-card-actions/add-or-remove-tags "Modifier les étiquettes"
+
+
+  :modal.add-or-remove-tags/search-placeholder "Rechercher des étiquettes à ajouter ou à retirer"
+  :modal.add-or-remove-tags/new-tag "Nouvelle étiquette"
+
+
+  :cards/delete:alert:title
+  (fn [card-count]
+    (str "Supprimer " (intcomma card-count) " " (if (> card-count 1) "cartes sélectionnées" "carte sélectionnée") " ?"))
+
+  :cards/delete:alert:desc
+  (fn [card-count]
+    (str "Veux-tu vraiment supprimer " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte") " ? Tu pourras les restaurer depuis la corbeille."))
+
+  :cards/delete:alert:confirm
+  (fn [card-count]
+    (str "Oui, supprimer " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte")))
+
+  :cards/archive:alert:title
+  (fn [card-count]
+    (str "Archiver " (intcomma card-count) " " (if (> card-count 1) "cartes sélectionnées" "carte sélectionnée") " ?"))
+
+  :cards/archive:alert:desc
+  (fn [card-count]
+    (str "Veux-tu vraiment archiver " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte") " ?"))
+  :cards/archive:alert:confirm
+  (fn [card-count]
+    (str "Oui, archiver " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte")))
+
+  :cards/reset-reviews:alert:title
+  (fn [card-count]
+    (str "Réinitialiser l'historique de " (intcomma card-count) " " (if (> card-count 1) "cartes sélectionnées" "carte sélectionnée") " ?"))
+  :cards/reset-reviews:alert:desc
+  (fn [card-count]
+    (str "Veux-tu vraiment réinitialiser l'historique de révision de " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte") " ? Toute la progression sera perdue et les cartes redeviendront « nouvelles »."))
+  :cards/reset-reviews:alert:confirm
+  (fn [card-count]
+    (str "Oui, réinitialiser l'historique de " (intcomma card-count) " " (if (> card-count 1) "cartes" "carte")))
+
+  :note.legacy/make-cards-from-note "Créer des cartes à partir de cette note"
+  :export-deck "Exporter"
+  :export "Exporter"
+  :export/deck-name (fn [deck-name] (str "Exporter " deck-name))
+  :export/submit "Exporter"
+  :export/submitting "Exportation..."
+  :export/format "Format d'exportation"
+  :export/mochi-format "Format Mochi"
+  :export/markdown-format "Markdown"
+  :export/csv-format "CSV"
+  :export/sqlite-format "SQLite"
+  :export/keep-reviews "Inclure l'historique de révision"
+  :export/ids-in-file-names "Inclure les identifiants dans les noms de fichiers"
+  :export/include-subdecks "Inclure les sous-paquets"
+  :export/csv-render-cards "Pré-rendre les cartes"
+  :export/everything "Tout exporter"
+  :export/error-title "Exportation impossible"
+  :export/error-msg [:<> "Un problème est survenu pendant l'exportation." [:br] "Merci de contacter " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+
+  :export-progress.mochi/title "Exportation..."
+  :export-progress.mochi/subtitle:collecting-data "Collecte des données"
+  :export-progress.mochi/subtitle:adding-cards "Ajout des cartes et des pièces jointes"
+  :export-progress.mochi/subtitle:generating-archive "Création de l'archive"
+
+  :publish "Publier"
+  :edit "Modifier"
+  :edit-note "Modifier la note"
+  :duplicate-note "Dupliquer la note"
+  :duplicate "Dupliquer"
+  :edit-card "Modifier la carte"
+
+  :cant-find-note "Note introuvable !"
+  :cant-find-deck "Paquet introuvable."
+
+  :cards-to-learn "Apprises aujourd'hui"
+
+  :make-cards-from-note "Créer des cartes à partir de cette note"
+  :make-cards-tooltip "Créer automatiquement des cartes à partir du contenu de cette note"
+  :copy-link "Copier l'identifiant"
+  :copy-deck-id "Copier l'identifiant du paquet"
+
+  :confirm-delete-deck/title "Supprimer ce paquet ?"
+  :confirm-delete-deck/description "Cette action est irréversible."
+  :yes-delete-deck "Supprimer le paquet"
+
+  :confirm-delete-note/title "Supprimer cette note ?"
+  :confirm-delete-note/description "Cette action est irréversible."
+  :yes-delete-note "Supprimer la note"
+
+  :confirm-delete-card/title "Supprimer cette carte ?"
+  :confirm-delete-card/description "Cette action est irréversible."
+  :yes-delete-card "Supprimer la carte"
+
+  :prev "Précédente"
+  :next "Suivante"
+  :forget "Oublié"
+  :remember "Retenu"
+  :finished-reviews "Tu as terminé toutes tes révisions !"
+  :finished-learning "Plus aucune carte à apprendre !"
+
+  :new "Nouveau"
+  :beta "Bêta"
+  :back "Retour"
+  :card-content-placeholder "Qu'est-ce que tu veux retenir ?"
+  :note-content-placeholder "À quoi penses-tu ?"
+  :deck-page/search-placeholder "Rechercher des cartes"
+  :next-side "Face suivante"
+  :reveal-next-side "Afficher la face suivante"
+  :view-note-as-page "Afficher en pleine page"
+  :preview "Aperçu"
+  :notes "Notes"
+  :decks "Paquets"
+
+  :add-to-reviews "Ajouter aux révisions"
+
+  ;; Messages des fenêtres modales
+  :imported-deck-already-exists "Un paquet portant cet identifiant existe déjà."
+  :imported-note-already-exists "Une note portant cet identifiant existe déjà."
+  :imported-card-already-exists "Une carte portant cet identifiant existe déjà."
+
+  :import/import-failed "Importation de la collection impossible"
+  :import/data-edn-not-found "Fichier data.edn ou data.json introuvable."
+  :import/invalid-data-edn "Le fichier data.edn ne respecte pas le schéma attendu."
+  :import/media-file-too-big "Cette collection contient une ou plusieurs pièces jointes de plus de 5 Mo."
+
+  :import-csv/import-failed "Importation du fichier CSV impossible"
+  :import-csv/failure-subtext "Un problème est survenu lors de la lecture du fichier CSV."
+
+  :diagram/unable-to-load-file "Impossible de charger le fichier"
+  :diagram/file-too-large "Les pièces jointes de plus de 5 Mo ne sont pas prises en charge."
+  :diagram/replace-image? "Remplacer l'image ?"
+  :diagram/replace-image-details "Veux-tu remplacer l'image actuelle par celle que tu viens de coller ?"
+
+  :import/anki-collection-file-not-found "Fichier collection.anki2 ou collection.anki21 introuvable."
+  :import/unsupported-apkg-file:title "Ce format n'est pas pris en charge."
+  :import/unsupported-apkg-file:desc "Depuis le 31 octobre 2023, le format des exportations Anki a changé. Exporte ta collection dans l'ancien format pour pouvoir l'importer dans Mochi."
+  :import/generic-error-title "Une erreur inattendue est survenue."
+  :import/generic-error-desc "L'importateur a rencontré une erreur inattendue en lisant ce fichier. Cela peut venir du fichier lui-même ou d'un bogue de l'importateur."
+  :import/uncaught-exception "Une erreur inattendue est survenue pendant l'importation du fichier."
+  :unable-to-read-md-file "Impossible de lire le fichier .md."
+
+  ;; Fenêtre de progression de l'importation
+  :importing "Importation..."
+  :emptying-trash "Vidage de la corbeille..."
+  :importing/extracting-archive "Extraction de l'archive"
+  :importing/reading-data "Lecture des données"
+  :importing/saving-data "Enregistrement des données"
+  :import/select-or-create-deck "Choisir ou créer un paquet"
+  :import/new-deck "Nouveau paquet"
+
+  :import-modal/mochi-options "Options d'importation Mochi"
+  :import-modal/anki-options "Options d'importation Anki"
+  :import-modal/csv-options "Options d'importation CSV"
+  :import-modal/markdown-options "Options d'importation Markdown"
+  :import-modal/select-format "Choisis un format dans la colonne de gauche."
+
+  :exporting "Exportation..."
+
+  :auto-update/check-for-updates "Rechercher les mises à jour"
+  :auto-update
+  {:auto-update.status/download-and-install "Télécharger et installer"
+   :auto-update.status/update-available "Une nouvelle version est disponible !"
+   :auto-update.status/beta-available   [:<> "Une nouvelle version " [:strong "bêta"] " est disponible !"]
+   :auto-update.status/desc
+   (fn [update-version]
+     [:<>
+      [:a {:style {:font-style "italic"
+                   :text-decoration "underline"
+                   "&:hover" {:text-decoration "underline"}}
+           :href (if (includes? update-version "beta")
+                   "https://mochi.cards/beta-changelog/"
+                   "https://mochi.cards/changelog/")
+           :target "_blank"}
+       "Clique ici"] " pour voir les nouveautés."])
+   :auto-update.status/backing-up       "Sauvegarde en cours..."
+   :auto-update.status/backing-up-desc  "Tes données locales sont en cours de sauvegarde."
+   :auto-update.status/downloading      "Téléchargement..."
+   :auto-update.status/downloaded       "Téléchargement terminé"
+   :auto-update.status/downloaded-desc  "Redémarre pour installer la mise à jour."
+   :auto-update.status/failed           "Échec de la mise à jour"
+   :auto-update.status/failed:desc      (fn [msg]
+                                          [:<>
+                                           "Une erreur est survenue pendant la recherche de mises à jour. "
+                                           (when msg
+                                             [:<> [:br] msg])])}
+
+  ;; Fenêtre du compte
+  :account.settings/delete-account "Supprimer mon compte"
+  :account.settings/deleting-account "Suppression du compte"
+  :account.settings/are-you-sure-delete-account "Es-tu vraiment sûr ?"
+
+  :account.settings/delete-account-email "Ton adresse e-mail"
+  :account.settings/delete-account-confirm-password "Confirme ton mot de passe"
+  ;; La phrase entre guillemets est comparée telle quelle par l'application : ne pas la traduire.
+  :account.settings/delete-account-type-out-confirm "Tape « delete my account » pour confirmer."
+  :account.settings/delete-account-please-read "À lire attentivement."
+  :account.settings/confirm-delete-account
+  [:<>
+   [:p
+    "Cette action " [:strong "ne peut pas"] " être annulée. Ton compte sera supprimé " [:strong "immédiatement"] ". Toutes les données associées seront effacées des serveurs de Mochi, y compris les sauvegardes dans le cloud."]
+   [:p "Si des informations de facturation sont enregistrées chez Stripe, elles seront également supprimées."]
+   [:p "Tes données locales ne seront pas touchées."]]
+
+  :confirm-password-then-sync "Tu sembles avoir été déconnecté. Confirme ton mot de passe pour te reconnecter."
+  :upgrade-confirm-password "Veux-tu vraiment passer à l'offre supérieure ? Confirme ton mot de passe pour continuer."
+  :confirm-and-sync "Synchroniser le contenu"
+  :upgrade          "Passer à Pro"
+  :pro "Pro"
+
+  :account-modal/are-you-sure-downgrade? "Veux-tu vraiment revenir à l'offre inférieure ?"
+  :account-modal/downgrade-subtext "Ton abonnement changera à la fin de la période de facturation. Tu pourras toujours accéder à tes données hors ligne avec l'offre gratuite."
+  :account-modal/confirm-downgrade "Oui, passer à l'offre gratuite"
+
+  :account-modal/are-you-sure-upgrade? "Veux-tu vraiment passer à l'offre supérieure ?"
+  :account-modal/confirm-password "Confirme ton mot de passe pour continuer."
+  :account-modal/confirm-upgrade "Passer à Pro"
+  :account-modal/confirm-upgrade:loading "Changement en cours..."
+
+  ;; Fenêtre de paiement
+
+  ;; Pièces jointes
+  :attachments/too-large:title "Pièce jointe trop volumineuse"
+  :attachments/too-large:subtext "Les pièces jointes de plus de 5 Mo ne sont pas prises en charge pour le moment."
+  :file-too-big "Les pièces jointes de plus de 5 Mo ne sont pas prises en charge."
+
+  :ok "OK"
+
+  ;; Page d'un paquet
+  :review-all-cards      "Révision express"
+  :review-searched-cards "Réviser les résultats"
+  :review-filtered-cards "Réviser les cartes"
+  :no-filters-applied "Aucun filtre appliqué."
+  :add-filter "Ajouter un filtre"
+
+  :make-public "Publié"
+  :copy-public-link "Copier le lien de la note"
+  :published-tooltip "Ce paquet et ses cartes sont publics. Toute personne disposant du lien peut les consulter"
+  :duplicate-deck? "Veux-tu enregistrer ce paquet ?"
+  :public-deck-warning-duplicate? "Tu consultes un paquet publié. Tu dois d'abord le copier avant de pouvoir le modifier."
+
+  ;; Connexion CouchDB
+  :couchdb-auth-failed "Impossible de se connecter à la base de données distante. Merci de contacter support@mochi.cards"
+
+  :markdown/heading-1       "T1"
+  :markdown/heading-2       "T2"
+  :markdown/heading-3       "T3"
+  :markdown/thematic-break  "Ajouter une face"
+  :markdown/bold            "Gras"
+  :markdown/italic          "Italique"
+  :markdown/strikethrough   "Barré"
+  :markdown/highlight       "Surligné"
+  :markdown/link            "Lien"
+  :markdown/reference       "Référence"
+  :markdown/media           "Pièces jointes"
+  :markdown/list            "Liste"
+  :markdown/ordered-list    "Liste numérotée"
+  :markdown/quote           "Citation"
+  :markdown/definition-list "Liste de définitions"
+  :markdown/cloze           "Texte masqué"
+  :markdown/cloze-group     "Groupe de texte masqué"
+  :markdown/code            "Code"
+  :markdown/code-block      "Bloc de code"
+  :markdown/latex           "LaTeX en ligne"
+  :markdown/latex-block     "LaTeX en bloc"
+  :markdown/superscript     "Exposant"
+  :markdown/subscript       "Indice"
+  :markdown/ruby            "Annotations ruby"
+  :markdown/tag             "Étiquette"
+
+  :shortcuts/add-card "Ajouter une carte"
+  :shortcuts/review-cards "Réviser les cartes dues"
+  :shortcuts/learn-cards "Apprendre de nouvelles cartes"
+  :shortcuts/notebook-move "Déplacer la sélection"
+  :shortcuts/notebook-esc "Annuler la sélection"
+  :shortcuts/notebook-preview "Aperçu de la carte"
+
+  :shortcuts/delete-note "Supprimer la note"
+  :shortcuts/edit-note "Modifier la note"
+
+  :shortcuts/next-side "Afficher la face suivante"
+  :shortcuts/prev-side "Masquer la dernière face"
+  :shortcuts/mark-remembered "Marquer comme « retenu »"
+  :shortcuts/skip-and-mark-remembered "Passer les faces et marquer comme « retenu »"
+  :shortcuts/mark-forgot "Marquer comme « oublié »"
+  :shortcuts/archive-card "Archiver la carte"
+  :shortcuts/toggle-reverse-review "Activer ou désactiver la révision inversée"
+  :shortcuts/delete-card "Supprimer la carte"
+  :shortcuts/edit-card "Modifier la carte"
+  :shortcuts/replay-audio "Réécouter l'audio"
+  :shortcuts/pause-audio "Mettre en pause ou reprendre l'audio"
+  :shortcuts/split-card "Scinder la carte au curseur"
+  :shortcuts/save-and-add "Enregistrer et ajouter une carte"
+  :shortcuts/save-and-exit "Enregistrer et terminer la modification"
+  :shortcuts/add-side "Ajouter une face"
+  :shortcuts/add-card-above "Ajouter une carte au-dessus"
+  :shortcuts/add-card-below "Ajouter une carte en dessous"
+
+  :shortcuts/exit-modal "Fermer la fenêtre"
+  :shortcuts/save-editor "Enregistrer l'éditeur"
+  :shortcuts/show-shortcuts-help "Afficher ce panneau"
+
+  :shortcuts/move-card-up "Monter la carte"
+  :shortcuts/move-card-down "Descendre la carte"
+
+  :shortcuts/editor:save "Enregistrer et quitter"
+  :shortcuts/editor:exit "Quitter sans enregistrer"
+  :shortcuts/editor:open-reference "Ouvrir la référence"
+  :shortcuts/editor:new-card-from-selection "Nouvelle carte (à partir de la sélection)"
+
+
+  :downgrade "Revenir à l'offre gratuite"
+  :downgrading "Changement en cours..."
+
+  :update-credit-card "Mettre à jour la carte bancaire"
+  :updating-credit-card "Mise à jour de la carte bancaire"
+
+  :update-password "Modifier le mot de passe"
+  :updating-password "Modification du mot de passe"
+
+  :password              "Mot de passe"
+  :password-confirmation "Confirmation du mot de passe"
+
+  :account-settings "Réglages du compte"
+
+  :all-synced "Tout est synchronisé"
+  :syncing "Synchronisation..."
+  :reconnecting "Nouvelle tentative..."
+  :sync-failed "Échec de la synchronisation"
+
+  :import-desktop-only "L'importation n'est disponible que dans les applications de bureau et mobile."
+
+  :review/review-cards "Réviser les cartes"
+  :review/learn-cards "Apprendre de nouvelles cartes"
+  :review/rereview-cards "Revoir les cartes oubliées"
+  :review/skip-rereviews "Passer et terminer"
+
+  :pages.review.done.title/percentage (fn [percentage-tag] [:<> "Tu as retenu " percentage-tag " des cartes."])
+  :pages.review.done.title/review-finished "Révision terminée."
+  :pages.review.done.title/review-no-cards "Aucune carte à réviser aujourd'hui."
+
+  :pages.review.done.title/rereview "Cartes oubliées revues."
+
+  :pages.review.done.title/new-cards-finished "Apprentissage terminé."
+  :pages.review.done.title/new-cards-empty "Aucune nouvelle carte."
+
+  :pages.review.done.title/quick-study "Plus aucune carte."
+
+  :pages.review.done.title/inbox "Boîte de réception traitée."
+  :pages.review.done.title/inbox-empty "La boîte de réception est vide."
+
+  :pages.review.done.review-cards/from-new-cards "Passons maintenant à la révision des cartes que tu viens d'apprendre."
+  :pages.review.done.review-cards/text "Passons maintenant aux cartes à réviser aujourd'hui."
+  :pages.review.done.review-cards/button-tooltip "Appuie sur espace pour réviser les cartes."
+
+  :pages.review.done.learn-cards/in-other-decks "Tu as de nouvelles cartes dans d'autres paquets."
+  :pages.review.done.learn-cards/text "Et si tu apprenais quelques nouvelles cartes ?"
+  :pages.review.done.learn-cards/button-tooltip "Appuie sur espace pour apprendre de nouvelles cartes."
+
+  :pages.review.done.rereview/text "Revoyons les cartes que tu as oubliées."
+  :pages.review.done.rereview/button-tooltip "Appuie sur espace pour commencer."
+
+  :pages.review.done/enjoy-your-day "Bonne journée !"
+
+  :pouchdb/unable-to-save "Impossible d'enregistrer le document"
+  :pouchdb/unknown-error [:<> "Un problème est survenu pendant l'enregistrement de ce document." [:br] "Merci de contacter " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+  :pouchdb/sqlite-corrupt-error [:<> "Problème d'intégrité de la base de données. Redémarre Mochi pour la réparer."]
+  :couchdb/unable-to-sync "Échec de la synchronisation"
+  :couchdb/unauthorized [:<> "Impossible de s'authentifier auprès du serveur," [:br] "connecte-toi pour te ré-authentifier."]
+  :couchdb/unknown-error [:<> "Un problème est survenu pendant la synchronisation." [:br] "Merci de contacter " [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]]
+
+  :sync/attachment-sync-failed "Échec de la synchronisation des pièces jointes"
+  :sync/attachment-sync-failed:text "Une erreur inattendue a empêché la synchronisation des pièces jointes."
+
+
+  :loading/logging-in       "Recherche du compte..."
+  :loading/migrating        "Migration des données..."
+  :loading/syncing          "Synchronisation..."
+  :loading/reading-local-db "Chargement des cartes..."
+  :loading/loading-data     "Indexation..."
+
+  :trash "Corbeille"
+  :trash/is-empty "La corbeille est vide."
+  :trash/empty "Vider la corbeille"
+  :trash/empty-trash-tooltip "Supprimer définitivement tout le contenu de la corbeille. // Cette action est irréversible."
+  :trash/confirm-empty-title "Supprimer tout le contenu de la corbeille ?"
+  :trash/confirm-empty "Veux-tu vraiment supprimer tout le contenu de la corbeille ? Cette action est irréversible."
+  :trash/yes-empty-trash "Vider la corbeille"
+
+  :trashed "Corbeille"
+  :restore "Restaurer"
+
+  :trash/delete-permanently "Supprimer définitivement"
+
+  :db/compact "Compacter"
+  :db/compact-tooltip "Le compactage de la base de données est une opération ponctuelle // Il supprime les données inutilisées et libère de l'espace disque"
+  :db/confirm-compact-title "Compacter la base de données maintenant ?"
+  :db/confirm-compact-subtext "Cela peut prendre quelques minutes selon le volume de données."
+  :db/yes-compact "Oui, compacter"
+  :db/compacting "Compactage..."
+
+  :deck-stats/average-retention-rate
+  (fn [rate] (str "Taux de rétention moyen : " rate))
+  :deck-stats/num-of-cards-learned
+  (fn [learned-count total] (str learned-count " sur " total " " (if (> total 1) "cartes apprises" "carte apprise")))
+  :deck-stats/total-num-of-cards
+  (fn [card-count]
+    (str "Ce paquet contient " card-count " " (if (> card-count 1) "cartes" "carte")))
+
+  :banners/web-free-account-warning
+  [:div
+   [:strong "Données non sauvegardées, elles peuvent être perdues"]
+   [:br]
+   [:span {:style {:margin-right "6px"}}
+    "Les données stockées dans le navigateur sont temporaires."
+    [:br]
+    "Télécharge l'application ou passe à Pro pour les synchroniser."]]
+  :banners/web-no-account-warning
+  [:div
+   [:strong "Données non sauvegardées, elles peuvent être perdues"]
+   [:br]
+   [:span {:style {:margin-right "6px"}}
+    "Les données stockées dans le navigateur sont temporaires."
+    [:br]
+    "Télécharge l'application ou crée un compte pour les synchroniser."]]
+
+  :banner/published-deck [:<> "Ce paquet est publié. Tu peux le parcourir et le modifier," [:br] "mais tu devras le copier pour enregistrer tes modifications."]
+
+  :toast/created-card "Carte créée"
+  :toast/archived-card "Carte archivée"
+  :toast/unarchived-card "Carte désarchivée"
+  :toast/duplicate-card "Carte dupliquée"
+  :toast/pinned-card "Carte épinglée"
+  :toast/unpinned-card "Carte désépinglée"
+  :toast/enabled-review-reverse "Révisions inversées activées"
+  :toast/disabled-review-reverse "Révisions inversées désactivées"
+  :toast/copied-link-to-card "Lien de la carte copié"
+  :toast/learned-card "Carte ajoutée aux révisions"
+  :toast/saved-card "Carte enregistrée"
+  :toast/moved-card-to-trash "Déplacée à la corbeille"
+  :toast/delete-template "Modèle supprimé"
+  :toast/move-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes déplacées" "carte déplacée")))
+  :toast/moved-card
+  (fn [card-count]
+    (str "Carte déplacée vers " card-count))
+  :toast/archive-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes archivées" "carte archivée")))
+  :toast/unarchive-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes désarchivées" "carte désarchivée")))
+  :toast/pin-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes épinglées" "carte épinglée")))
+  :toast/unpin-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes désépinglées" "carte désépinglée")))
+  :toast/remove-cards-tag
+  (fn [card-count]
+    (str "Étiquette retirée de " card-count " " (if (> card-count 1) "cartes" "carte")))
+  :toast/add-cards-tag
+  (fn [card-count]
+    (str "Étiquette ajoutée à " card-count " " (if (> card-count 1) "cartes" "carte")))
+  :toast/review-reverse-cards:on
+  (fn [card-count]
+    (str "Révisions inversées activées pour " card-count " " (if (> card-count 1) "cartes" "carte")))
+  :toast/review-reverse-cards:off
+  (fn [card-count]
+    (str "Révisions inversées désactivées pour " card-count " " (if (> card-count 1) "cartes" "carte")))
+  :toast/learn-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes ajoutées" "carte ajoutée") " aux révisions"))
+  :toast/trash-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes déplacées" "carte déplacée") " à la corbeille"))
+  :toast/reset-cards-reviews
+  (fn [card-count]
+    (str "Historique réinitialisé pour " card-count " " (if (> card-count 1) "cartes" "carte")))
+  :toast/merge-cards
+  (fn [card-count]
+    (str card-count " " (if (> card-count 1) "cartes fusionnées" "carte fusionnée")))
+
+  :close "Fermer"
+  :undo "Annuler"
+  :redo "Rétablir"
+
+  :card-actions/review-reverse "Révision inversée"
+
+  ;; Symboles de touches : ne pas traduire
+  :kbd/ctrl  "⌃"
+  :kbd/enter "⏎"
+  :kbd/esc   "Échap"
+  :kbd/shift "⇧"
+  :kbd/cmd   "⌘"
+  :kbd/space "Espace"
+  :kbd/up    "↑"
+  :kbd/down  "↓"
+
+  :deck-view-switcher/show-card-title "Afficher le titre de la carte"
+  :preferences/notebook-show-context "Afficher le contexte des cartes dans le carnet"
+  :deck-views/add-view "Ajouter une vue"
+
+  :preferences/title "Préférences"
+  :preferences/deck-title "Préférences du paquet"
+
+  :preferences/font-style "Police"
+  :preferences/font-size "Taille du texte"
+  :preferences/dark-mode "Mode sombre"
+
+  :preferences/reduce-animations:title "Réduire les animations"
+  :preferences/reduce-animations:desc "Activer cette option désactive les animations qui se déclenchent pendant une révision quand tu marques une carte comme retenue ou oubliée."
+
+  :preferences/rtl:title "Forcer l'écriture de droite à gauche"
+  :preferences/rtl:desc "Utile pour des langues comme l'hébreu ou l'arabe."
+
+  :preferences/show-cloze:title "Afficher le texte masqué"
+  :preferences/show-cloze:desc "Affiche le texte masqué dans l'aperçu des cartes sur la page du paquet."
+
+  :preferences/show-all-sides:title "Afficher toutes les faces"
+  :preferences/show-all-sides:desc "Affiche toutes les faces d'une carte sur la page du paquet, pas seulement la première."
+
+  :preferences/show-nested-cards:title "Afficher les cartes des sous-paquets"
+  :preferences/show-nested-cards:desc "Affiche toutes les cartes des paquets enfants, y compris ceux imbriqués sur plusieurs niveaux."
+
+  :preferences/show-subdecks:title "Afficher les sous-paquets"
+  :preferences/show-subdecks:desc "Affiche la liste des sous-paquets en haut de la page du paquet."
+
+  :preferences/spellcheck:title "Correction orthographique"
+  :preferences/spellcheck:desc "Active la correction orthographique lors de la modification d'une carte."
+
+  :preferences/char-limit:title "Limite de caractères par carte"
+  :preferences/char-limit:desc "Cette option compte et affiche le nombre de caractères utilisés à la création d'une carte. Utile pour écrire des cartes courtes et ciblées."
+
+  :preferences/code-block-soft-wrap:title "Retour à la ligne dans les blocs de code"
+  :preferences/code-block-soft-wrap:desc "Renvoie les lignes trop longues à la ligne dans les blocs de code markdown."
+
+  :preferences/type-hidden-text:title "Saisir le texte masqué"
+  :preferences/type-hidden-text:desc "Les textes masqués deviennent des champs à remplir au clavier."
+
+  :preferences/confirm-card-delete:title "Confirmer la mise à la corbeille"
+  :preferences/confirm-card-delete:desc "Quand cette option est activée, une confirmation est demandée avant de mettre une carte à la corbeille."
+
+  :preferences/auto-update-enabled:title "Activer les mises à jour automatiques"
+  :preferences/auto-update-enabled:desc "Quand cette option est activée, tu es prévenu dans l'application dès qu'une nouvelle version est disponible. Elle n'est ni téléchargée ni installée automatiquement. Désactive cette option pour ne plus recevoir aucun message de mise à jour."
+
+  :preferences/auto-update-beta:title "Versions bêta"
+  :preferences/auto-update-beta:desc "Aide à tester et à déboguer les fonctionnalités non publiées. Tu seras prévenu de la sortie des versions bêta, ainsi que des versions stables."
+
+  :preferences/auto-update-backup:title "Sauvegarder la base locale"
+  :preferences/auto-update-backup:desc "Avant le téléchargement d'une nouvelle version, la base de données locale est sauvegardée. Désactive cette option pour ignorer ces sauvegardes."
+
+  :preferences/search-languages:title "Langues prises en charge"
+  :preferences/search-languages:desc "Choisis les langues à utiliser pour la recherche. Plus il y a de langues, plus la mémoire utilisée augmente, et certaines combinaisons sont généralement incompatibles (par exemple le japonais et le chinois)."
+
+  :review-settings/title (fn [& [parent]]
+                           (str "Réglages de révision"
+                                (when parent (str " pour " (:name parent)))))
+  :review-settings/desc:global "Tu peux régler ici quand et comment les cartes sont révisées. Ces réglages s'appliquent à toutes les cartes, mais peuvent être redéfinis dans les réglages de révision de chaque paquet ou de chaque note."
+  :review-settings/desc:local "Tu peux régler ici quand et comment les cartes sont révisées."
+  :review-settings/remember-multiplier "Multiplicateur en cas de réussite"
+  :review-settings/remember-multiplier:tooltip "La prochaine date de révision est repoussée d'autant quand tu retiens une carte. // Astuce : la valeur 2 double l'intervalle."
+  :review-settings/forgot-multiplier "Multiplicateur en cas d'oubli"
+  :review-settings/forgot-multiplier:tooltip "La prochaine date de révision est rapprochée d'autant quand tu oublies une carte. // Astuce : la valeur 0.5 réduit l'intervalle de moitié."
+  :review-settings/max-interval "Intervalle maximum"
+  :review-settings/max-interval:days (fn [days] (if (> days 1) "jours" "jour"))
+  :review-settings/max-interval:tooltip "L'intervalle maximum entre deux révisions. // Laisse vide pour ne fixer aucune limite."
+  :review-settings/simulator:instructions "Utilise les boutons ci-dessous pour voir comment tes réponses influencent le calendrier de révision d'une carte."
+  :review-settings/simulator:added "Ajoutée"
+  :review-settings/simulator:days " jours"
+  :review-settings/simulator:remember "Retenir"
+  :review-settings/simulator:forget "Oublier"
+  :review-settings/simulator:reset "Réinitialiser"
+
+  :review-settings/inherit-from-parent "Utiliser le réglage du paquet parent"
+  :review-settings/inherit-from-global "Utiliser le réglage global"
+  :review-settings/retire-cards-title "Retirer les cartes"
+  :review-settings/retire-cards-desc "Quand cette option est activée, une carte retenue à l'intervalle maximum ou au-delà n'est plus planifiée pour révision."
+  :review-settings/retire-cards-yes "Retirer"
+  :review-settings/retire-cards-no "Ne pas retirer"
+  :review-settings/multiplier-noise-title "Ajouter une variation aléatoire"
+  :review-settings/multiplier-noise-desc "Quand cette option est activée, une petite part de hasard est ajoutée aux dates d'échéance pour éviter que les cartes ne restent groupées."
+  :review-settings/multiplier-noise-yes "Ajouter du hasard"
+  :review-settings/multiplier-noise-no "Ne pas ajouter de hasard"
+
+  :review-settings/review-reverse-title "Réviser les cartes dans les deux sens"
+  :review-settings/review-reverse-desc "Quand ce réglage est activé, les cartes à plusieurs faces sont révisées de haut en bas, puis de bas en haut. La carte conserve deux historiques de révision distincts, un par sens."
+  :review-settings/review-reverse-yes "Réviser dans les deux sens"
+  :review-settings/review-reverse-no "Ne pas réviser en sens inverse"
+
+  :review-settings/new-cards-limit "Limiter les nouvelles cartes par jour"
+  :review-settings/new-cards-limit-desc "Choisis ici combien de nouvelles cartes tu veux apprendre chaque jour. Laisse vide si tu ne veux pas de limite."
+  :review-settings/new-cards-limit-placeholder "Aucune limite"
+  :review-settings/new-cards-limit-cards-per-day "cartes/jour"
+  :review-settings/save "Enregistrer les réglages"
+  :review-settings/cancel "Annuler"
+
+  :account-modal/title "Réglages du compte"
+  :account-modal/update-credit-card "Mettre à jour la carte bancaire"
+  :account-modal/change-password    "Changer le mot de passe"
+  :account-modal/current-plan       "Offre actuelle"
+  :account-modal/already-cancelled  "Déjà résilié"
+
+  :sans-serif "Sans empattement"
+  :serif "Avec empattement"
+  :monospace "Chasse fixe"
+
+  :sort/sort           "Trier"
+  :sort/direction      "Croissant"
+  :sort/manual         "Aucun tri (manuel)"
+  :sort/retention-rate "Taux de rétention"
+  :sort/alphabetical   "Alphanumérique"
+  :sort/created-at     "Date de création"
+  :sort/updated-at     "Dernière modification"
+  :sort/interval-length "Dernier intervalle"
+  :sort/last-review-date "Dernière révision"
+  :sort/due-date        "Date d'échéance"
+  :sort/random          "Aléatoire"
+  :sort/referenced-count "Nombre de références"
+
+  :selection-popover/furigana  "Ajouter des furigana"
+  :selection-popover/cloze     "Masquer le texte"
+  :selection-popover/add-side  "Ajouter une face"
+  :selection-popover/split-card  "Scinder la carte"
+  :selection-popover/add-card  "Nouvelle carte"
+  :selection-popover/translate "Traduire"
+  :selection-popover/add-to-card "Ajouter à la carte"
+
+  :activate-account/resend-token      "Renvoyer le code"
+  :activate-account/token:placeholder "Colle ici le code de connexion."
+  :activate-account/token-sent        "Code d'activation envoyé."
+  :activate-account/submit            "Activer le compte"
+  :activate-account/submiting         "Activation..."
+
+  :onboarding/go-back "← Retour"
+  :onboarding/skip "Passer →"
+  :onboarding/welcome "Bienvenue dans Mochi !"
+  :onboarding/desc "Mochi est un outil pour créer des notes et des cartes mémoire qui t'aident à retenir ce que tu apprends."
+  :onboarding/get-started "Commencer"
+  :onboarding/already-have-an-account? "Tu as déjà un compte ?"
+  :onboarding/log-in "Se connecter"
+
+  :log-in-form/title "Connexion à ton compte"
+  :log-in-form/desc "Si tu as un compte Mochi, connecte-toi ci-dessous pour synchroniser tes cartes et tes données."
+
+  :log-in/email:placeholder    "Adresse e-mail"
+  :log-in/password:placeholder "Mot de passe"
+  :log-in/submit               "Se connecter"
+  :log-in/submitting           "Connexion..."
+  :log-in/forgot-password?     "Mot de passe oublié ?"
+
+  :password-recovery/title "Récupération du mot de passe"
+  :password-recovery/desc "Nous enverrons un code unique à ton adresse e-mail, qui te permettra de changer ton mot de passe."
+
+  :log-in/send-token "Envoyer le code"
+  :log-in/sending-token "Envoi..."
+
+  :checkout/monthly   "Paiement mensuel"
+  :checkout/annually  "Paiement annuel"
+  :checkout/submit    "S'abonner"
+  :checkout/submiting "Abonnement..."
+  :checkout/cancel    "Plus tard"
+
+  :breadcrumb/go-to-deck (fn [deck-name] (str "Aller au paquet : " deck-name))
+  :breadcrumb/click-to-rename "Clique pour renommer le paquet"
+  :breadcrumb/click-to-move "Clique pour déplacer vers un autre paquet | M"
+
+  :speech-synthesis/generic-error "Une erreur est survenue !"
+
+  :mobile-header/preview-card "Aperçu de la carte"
+  :create-new-card/title "Créer une carte"
+
+  :tooltip/attach-media "Joindre un média à cette carte"
+  :app/update-available "Une nouvelle version est disponible !"
+  :app/mobile-update-available "Mise à jour disponible !"
+
+  :alert/database-migration-required "Migration de la base de données nécessaire"
+  :alert/download-1-11-3 "Télécharge et lance la version 1.11.3 avant d'utiliser celle-ci."
+
+  :deck-progress/maxed "Maîtrisées"
+  :deck-progress/learned "Apprises"
+  :deck-progress/total "Total"
+  :deck-progress/archived "Archivées"
+
+  :filterer/no-templates "Aucun modèle"
+
+  :actions/pin-card "Épingler la carte"
+  :actions/unpin-card "Désépingler la carte"
+
+  :errors/initial-load:text "Impossible de charger les données"
+  :errors/initial-load:subtext
+  [:<>
+   "Une erreur inattendue est survenue pendant le chargement de tes données locales."
+   [:br] [:br]
+   "Merci de contacter "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+
+  :errors/initial-sync:text "Échec de la synchronisation"
+  :errors/initial-sync:subtext
+  [:<>
+   "Une erreur est survenue pendant la synchronisation. Redémarre l'application pour réessayer, ou contacte "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+
+  :errors/sqlite-migration:text "Impossible de migrer la base de données"
+  :errors/sqlite-migration:subtext:android
+  [:<>
+   "Un problème est survenu pendant la migration de la base de données vers SQLite."
+   [:br] [:br]
+   "Retour à IndexedDB. Merci de contacter "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+  :errors/sqlite-migration:subtext:desktop
+  [:<>
+   "Un problème est survenu pendant la migration de la base de données vers SQLite."
+   [:br] [:br]
+   "Reviens à la version précédente et contacte "
+   [:a {:href "mailto:support@mochi.cards"} "support@mochi.cards"]
+   "."]
+  :errors/sqlite-migration:download-link "Télécharger la version précédente 1.14.7"
+  ;; URLs de téléchargement : ne pas traduire
+  :errors/sqlite-migration:download-url:mac "https://download.mochi.cards/releases/Mochi-1.14.7.dmg"
+  :errors/sqlite-migration:download-url:linux "https://download.mochi.cards/releases/Mochi-1.14.7.AppImage"
+  :errors/sqlite-migration:download-url:windows "https://download.mochi.cards/releases/Mochi%20Setup%201.14.7.exe"
+
+  :type-answer/correct "Réponse"
+  ;; Noms d'icônes internes : ne pas traduire
+  :icons/remembered "checkmark"
+  :icons/forgot "close"
+  :set-template-alert/replace-content:title "Remplacer le contenu existant ?"
+  :set-template-alert/replace-content:body
+  [:<> "Cette carte contient déjà du contenu créé avant l'application du modèle actuel. Veux-tu remplacer ce contenu par celui du modèle actuel ?" [:br]
+       [:br]
+       "Contenu qui sera remplacé : "]
+  :set-template-alert/replace-primary-field:title "Ajouter le contenu au champ principal ?"
+  :set-template-alert/replace-primary-field:body
+  [:<> "Veux-tu utiliser le contenu actuel de la carte comme valeur du champ principal ?"
+       [:br] [:br]
+       "Le champ principal contient déjà la valeur suivante :"]
+
+  :transcription/attachment-not-found-error "Pièce jointe introuvable."
+  :transcription/attachment-too-large-error "La pièce jointe dépasse la taille maximale de 1 Mo."
+  :modal.settings/inherited-setting-label (fn [x] [:<> "Valeur par défaut : " [:strong x]])
+  :modal.settings/inherited-setting-tooltip-deck (fn [deck-name] (str "Ce réglage est hérité du paquet " deck-name))
+  :modal.settings/inherited-setting-tooltip-global "Ce réglage est hérité des réglages de base"
+
+  :modal.settings.sections/account "Compte"
+  :modal.settings.pages/profile "Profil"
+  :modal.settings.pages.profile.submit/success "Profil mis à jour."
+  :modal.settings.pages.profile.submit/error "Impossible de mettre à jour le profil."
+  :modal.settings.pages.profile.name/title "Nom"
+  :modal.settings.pages.profile.name/desc "Il doit correspondre à ton moyen de paiement."
+  :modal.settings.pages.profile.email/title "Adresse e-mail"
+  :modal.settings.pages.profile.email/desc "Pour te joindre."
+  :modal.settings.pages.profile.password/title "Mot de passe"
+  :modal.settings.pages.profile.password/desc "Ton mot de passe doit contenir au moins 6 caractères."
+  :modal.settings.pages.profile.danger-zone/title "Zone sensible"
+  :modal.settings.pages.profile.danger-zone/desc "Cela supprimera ton compte, tes informations de facturation et toutes les sauvegardes dans le cloud."
+
+  :modal.settings.pages/subscription "Abonnement"
+
+  :modal.settings.sections/preferences "Préférences"
+  :modal.settings.pages/appearance "Apparence"
+  :modal.settings.options.custom-translations/title "Traductions personnalisées"
+  :modal.settings.options.custom-translations/desc [:<> "Téléverse un fichier EDN contenant des traductions personnalisées. " [:a {:href "https://github.com/mochi-cards/mochi-translations" :target "_blank"} "En savoir plus"] "."]
+
+  :modal.settings.pages/cards "Cartes"
+  :modal.settings.pages/editing "Édition"
+  :modal.settings.pages/decks "Paquets"
+  :modal.settings.pages/attachments "Pièces jointes"
+  :modal.settings.pages/notebook-view "Vue carnet"
+  :modal.settings.pages/notifications "Notifications"
+
+  :modal.settings.sections/reviewing "Révision"
+  :modal.settings.pages/review-settings "Réglages de révision"
+  :modal.settings.pages/scheduling "Planification"
+
+  :modal.settings.sections/system "Système"
+  :modal.settings.pages/general "Général"
+  :modal.settings.pages/app-update "Mise à jour"
+  :modal.settings.pages/search "Recherche"
+  :modal.settings.pages/experimental "Expérimental"
+  :modal.settings.pages/about "À propos"
+  :modal.settings.pages.about/desc
+  (fn [{:keys [year version]}]
+    [:<>
+     [:p (str "Mochi version " version)]
+     [:p (str "Copyright © 2019-" year " Mochi Cards, LLC")]
+     [:p "Certaines données de dictionnaire sont sous copyright © 2022 National Institute of Korean Language et publiées sous licence Creative Commons Attribution-ShareAlike."]])
+
+  :settings.custom-translation.error.alert/text "Impossible de lire le fichier de traduction"
+  :settings.custom-translation.error.alert/subtext "Vérifie la syntaxe EDN."
+
+  :settings.custom-translation/no-translation "Aucune traduction personnalisée"
+  :settings.custom-translation/new-translation "Ajouter une traduction"
+  :settings.custom-translation/loading "Chargement..."
+
+  :preferences/css-theme:no-theme "Aucun thème"
+  :preferences/css-theme:new-theme "Ajouter un thème"
+
+  :pages.review.review-buttons.skip-back/tooltip "Revenir à la carte précédente // Réviser la carte actuelle plus tard | ←"
+  :pages.review.review-buttons.skip-forward/tooltip "Passer à la carte suivante // Réviser la carte actuelle plus tard | →"
+  :pages.review.review-buttons.forget/tooltip "Marquer cette carte comme oubliée"
+  :pages.review.review-buttons.remember/tooltip "Marquer cette carte comme retenue"
+  :pages.review.review-buttons.undo/tooltip "Annuler la dernière révision | :kbd/mod z"
+  :pages.review.review-buttons.pin/tooltip "Épingler la carte // Épingler cette carte dans la barre latérale | shift P"
+  :pages.review.review-buttons.archive/tooltip "Archiver la carte // Retirer du calendrier de révision | A"
+  :pages.review.review-buttons.delete/tooltip "Supprimer la carte // Mettre à la corbeille | D"
+  :pages.review.review-mode-selector/inbox "Toutes les cartes"
+  :pages.review/shuffle-button "Mélanger"
+  :pages.review/shuffle-button:tooltip "Mettre les cartes dans un ordre aléatoire"
+  :pages.review/estimate-next-interval
+  (fn [{:keys [interval retire?]}]
+    (cond
+      (= interval 0) " // Prochaine révision plus tard aujourd'hui"
+      retire? " // Intervalle maximum atteint, carte retirée"
+      :else (str " // Prochaine révision dans " interval " " (if (> interval 1) "jours" "jour"))))
+
+  :pages.review.card/next-side-hint
+  (fn [space down]
+    [:<> "Appuie sur" space "ou" down "pour afficher la face suivante"])
+
+  :pages.review.card/cloze-hint
+  (fn [space]
+    [:<> "Appuie sur" space "pour révéler le texte masqué"])
+
+  :pages.review.card/last-side-hint
+  (fn [space f]
+    [:<> "Appuie sur " space " si tu as retenu, ou " f " si tu as oublié."])
+  ;; ------------------------------------------------------------------
+  ;; Clés utilisées par l'application mais absentes du :en du dépôt.
+  ;; Extraites du dictionnaire embarqué de Mochi.app (799 clés contre 757).
+  ;; ------------------------------------------------------------------
+
+  :pages.deck/search         "Rechercher"
+  :pages.deck/filters-toggle "Filtres"
+  :pages.deck/share          "Partager"
+
+  :card.review/next-side       "Afficher la face suivante"
+  :card.review/tap-next-side   "Appuie pour afficher la face suivante"
+  :card.review/tap-hidden-text "Appuie pour révéler le texte masqué"
+
+  :markdown/embed "Intégrer une carte"
+
+  :confirm-delete-review/title "Supprimer cette révision ?"
+  :confirm-delete-review/description "Cette révision sera définitivement retirée de l'historique de la carte."
+  :confirm-delete-review/confirm "Supprimer la révision"
+  :toast/review-deleted "Révision supprimée"
+
+  :field/confirm-change-type "Changer le type de ce champ ?"
+  :field/change-type-subtext "Toutes les options et les sous-champs seront supprimés."
+  :field/yes-change-type "Changer le type"
+  :field/delete-subtext-cascade "Ce champ, ainsi que ses sous-champs, sera retiré de ce modèle."
+
+  :preferences/show-next-side-button:title "Afficher un bouton pour révéler la face suivante"
+  :preferences/show-next-side-button:desc "Affiche un bouton cliquable pour passer à la face suivante de la carte pendant la révision. Utile pour afficher la face suivante avant de révéler le texte masqué de la face en cours."
+
+  ;; Panneau des raccourcis clavier
+  :flyout.shortcuts/title "Raccourcis clavier"
+  :flyout.shortcuts/search-placeholder "Rechercher un raccourci"
+  :flyout.shortcuts/desc
+  (fn [a]
+    [:<> "Appuie sur " a " pour afficher ou masquer ce panneau."])
+  :flyout.shortcuts.deck-page/header "Page du paquet"
+  :flyout.shortcuts.deck-page/desc "Raccourcis utilisables sur la page du paquet."
+  :flyout.shortcuts.deck-page-column/header "Page du paquet (vue colonnes)"
+  :flyout.shortcuts.deck-page-column/desc "Raccourcis pour se déplacer, sélectionner et modifier les cartes dans la vue colonnes."
+  :flyout.shortcuts.list-view-select/header "Vue liste (mode sélection)"
+  :flyout.shortcuts.list-view-select/desc "Raccourcis pour se déplacer, sélectionner et modifier les cartes dans la vue liste."
+  :flyout.shortcuts.notebook-view-select/header "Vue carnet (mode sélection)"
+  :flyout.shortcuts.notebook-view-select/desc "Raccourcis pour se déplacer, sélectionner et modifier les cartes dans la vue carnet."
+  :flyout.shortcuts.notebook-view-edit/header "Vue carnet (mode édition)"
+  :flyout.shortcuts.notebook-view-edit/desc "Raccourcis utilisables pendant la modification d'une carte dans la vue carnet."
+  :flyout.shortcuts.review-page/header "Page de révision"
+  :flyout.shortcuts.review-page/desc "Ces raccourcis sont utilisables sur les pages de révision et d'apprentissage de nouvelles cartes."
+  :flyout.shortcuts.editor/header "Éditeur"
+  :flyout.shortcuts.editor/desc "Utilisables pendant la modification d'une carte."
+  :flyout.shortcuts.markdown-formatting/header "Mise en forme markdown"
+  :flyout.shortcuts.markdown-formatting/desc "Tu peux mettre le texte en forme avec markdown."
+  :flyout.shortcuts.misc/header "Divers"
+  :flyout.shortcuts.misc/desc "Divers autres raccourcis."
+
+  ;; Fenêtres d'importation (remplacent les clés :import-modal/* du dépôt)
+  :modal.import/choose-file "Choisir un fichier"
+
+  :modal.import.mochi/title "Options d'importation Mochi"
+  :modal.import.mochi/desc
+  [:<> "Sélectionne un fichier " [:code ".mochi"] " pour commencer l'importation. "
+   [:a {:target "_blank" :href "https://mochi.cards/docs/import-and-export/mochi-format-reference/"} "En savoir plus"]]
+
+  :modal.import.anki/title "Options d'importation Anki"
+  :modal.import.anki/desc
+  [:<> "Sélectionne un fichier " [:code ".apkg"] " pour commencer l'importation."]
+  :modal.import.anki.option/convert-html "Convertir le HTML en markdown"
+  :modal.import.anki.option/convert-html-info "Beaucoup de paquets Anki contiennent des modèles avec du CSS personnalisé. Ce CSS ne sera pas importé dans Mochi. La plupart des modèles Anki devront être légèrement retouchés pour s'afficher correctement."
+
+  :modal.import.csv/title "Options d'importation CSV"
+  :modal.import.csv/desc
+  [:<> "Sélectionne un fichier " [:code ".csv"] " pour commencer l'importation. "
+   [:a {:target "_blank" :href "https://mochi.cards/docs/import-and-export/importing/#importing-csv-files"} "En savoir plus"]]
+  :modal.import.csv/separator "Séparateur"
+  :modal.import.csv/quote "Guillemet"
+  :modal.import.csv.separator/tab "tabulation"
+  :modal.import.csv.quote/none "aucun"
+
+  :modal.import.markdown/title "Options d'importation Markdown"
+  :modal.import.markdown/desc "Choisis comment importer les fichiers markdown."
+  :modal.import.markdown/choose-files "Choisir des fichiers"
+  :modal.import.markdown.option/one-card "Une carte par fichier markdown"
+  :modal.import.markdown.option/many-cards "Plusieurs cartes par fichier markdown"
+  :modal.import.markdown.option/delimiter "Saisis ci-dessous le délimiteur sur lequel découper le fichier."}
+
+
  :ja
  {:side-bar/dashboard "ダッシュボード"
   :side-bar/new-cards "新規カード"
